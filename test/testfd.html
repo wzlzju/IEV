@@ -170,7 +170,8 @@ d3.timeout(function() {
 
 
     var svg = d3.select("svg")
-                .attr("viewBox", [-1920 / 2, -1000 / 2, 1920, 1000]);
+                .attr("viewBox", [-1920 / 2, -1000 / 2, 1920, 1000])
+                .on("dblclick", function(d) {updateData();});
 
 
 
@@ -251,9 +252,6 @@ d3.timeout(function() {
                         return logxy(10, line.value+1)*1;
                     }
                 });
-                if(node.alpha3 == "CHN"){
-                    updateData()
-                }
             })
             .call(drag(simulation))
             .on("mouseover",function(d,i){
