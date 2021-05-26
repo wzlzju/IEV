@@ -1,7 +1,7 @@
 # IEV
 Industrial Economics Visualization
 
-## Intial code description
+## Initial code description
 
 ### cepii data
 
