@@ -29,7 +29,7 @@ cepii data/tmp里存放了一些早期处理好的数据，用来测试效果。
 	
 	- countries-trades/
 
-		从year data/处理得到的结果，用于test/中的demo进行测试。其中*_total_*.json是将所有年份的数据保存在一个文件中
+		从year data/处理得到的结果，用于test/中的demo进行测试。其中\*\_total\_\*.json是将所有年份的数据保存在一个文件中
 
 - textile raw materials/
 
@@ -42,6 +42,7 @@ cepii data/tmp里存放了一些早期处理好的数据，用来测试效果。
 数据处理
 
 这一部分的实现只做参考，具体要考虑前端的数据需求
+
 用到了`pycountry-convert`库，用于获取国家所在的洲
 
 - main.py
@@ -66,7 +67,7 @@ demo测试
 
 目前只测试了动态力引导图的效果
 
-数据使用的是cepii data/tmp/textile/countries-trades/57-63_countries-trades_HS92_total_V202102.json
+数据使用的是cepii data/tmp/textile/countries-trades/57-63\_countries-trades\_HS92\_total\_V202102.json
 
 因为是测试用的demo，就简单写了一个html
 
