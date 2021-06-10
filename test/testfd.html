@@ -24,11 +24,13 @@ request.onload = function () {/*XHR对象获取到返回信息后执行*/
                                                                 expsum: cdata[v].expsum}; });
                                                                 console.log(nodes)
     
-    var ulinks = Object.keys(cdata).map(function(v,i,l){ if(cdata[v].implist.length>0) return {target: i,
+    var ulinks = Object.keys(cdata).map(function(v,i,l){
+         if(cdata[v].implist.length>0) return {target: i,
                                                                 source: Object.keys(cdata).indexOf(cdata[v].implist[0][0]),
                                                                 value: cdata[v].implist[0][1]}; });
+                                                                console.log('ulinks', ulinks)
     links = ulinks.filter(res=>{return res});
-                                                                console.log(links)
+                                                                console.log('links', links)
     function updateData(){
     
     simulation.stop();
@@ -55,6 +57,7 @@ request.onload = function () {/*XHR对象获取到返回信息后执行*/
         links[i].value = culinks[idx].value;
         culinks[idx] = undefined;
     }
+    console.log("update???")
     for(var i = 0; i < culinks.length; i++){
         if(culinks[i]){
             links.push({target: nodes[culinks[i].target],
@@ -189,6 +192,7 @@ d3.timeout(function() {
         //     .force("y", d3.forceY())
         //     .on("tick",tick)
         //     .start();
+        console.log('links2', links)
         var simulation = d3.forceSimulation(nodes)
                             .force("link", d3.forceLink(links))
                             .force("charge", d3.forceManyBody().strength(-300))
