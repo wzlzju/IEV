@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.7.0/d3.min.js" integrity="sha512-cd6CHE+XWDQ33ElJqsi0MdNte3S+bQY819f7p3NUHgwQQLXSKjE4cPZTeGNI+vaxZynk1wVU3hoHmow3m089wA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    </head>
+    <body>
+        <script async >
+            // fetch('https://static.observableusercontent.com/files/bee673b386dd058ab8d2cf353acbedc6aa01ebd1e6f63e2a9ab1b4273c7e6efd1eeea526345e4be7f0012d5db3ec743ef39ad9e6a043c196670bf9658cb02e79')
+            // .then(response => response.text())
+            // .then(txt => console.log(txt))
+            //console.log(data)
+            async function  drawPixelMap(){
+                let margin = ({top: 20, right: 1, bottom: 40, left: 40})
+                let width = 750, height = 16;
+
+                const names = ["Alaska", "Ala.", "Ark.", "Ariz.", "Calif.", "Colo.", "Conn.", "D.C.", "Del.", "Fla.", "Ga.", "Hawaii", "Iowa", "Idaho", "Ill.", "Ind.", "Kan.", "Ky.", "La.", "Mass.", "Md.", "Maine", "Mich.", "Minn.", "Mo.", "Miss.", "Mont.", "N.C.", "N.D.", "Neb.", "N.H.", "N.J.", "N.M", "Nev.", "N.Y.", "Ohio", "Okla.", "Ore.", "Pa.", "R.I.", "S.C.", "S.D.", "Tenn.", "Texas", "Utah", "Va.", "Vt.", "Wash.", "Wis.", "W.Va.", "Wyo."];
+
+                let response = await fetch('https://static.observableusercontent.com/files/b6f6442d639b2aa66deada04456cbba543479325a2e2e22eac7f7dcd0265bc5bff81206b1635fdf775aec6662f2df8605386f5e680c146c1d4c0c11dac5c5851')
+                let dataJson = await response.json();
+                const values = []
+                const year0 = d3.min(dataJson[0].data.values.data, d => d[0]);
+                const year1 = d3.max(dataJson[0].data.values.data, d => d[0]);
+                const years = d3.range(year0, year1 + 1);
+                for (const [year, i, value] of dataJson[0].data.values.data) {
+                    if (value == null) continue;
+                    (values[i] || (values[i] = []))[year - year0] = value;
+                }
+                let data = {values, names, years, year:dataJson[0].data.chart_options.vaccine_year}
+                console.log(data)
+                let innerHeight = height * data.names.length;
+                let format = (()=>{
+                    const f = d3.format(",d");
+                    return d => isNaN(d) ? "N/A cases"
+                        : d === 0 ? "0 cases"
+                        : d < 1 ? "<1 case"
+                        : d < 1.5 ? "1 case"
+                        : `${f(d)} cases`;
+                })()
+
+                let x = d3.scaleLinear()
+                        .domain([d3.min(data.years), d3.max(data.years) + 1])
+                        .rangeRound([margin.left, width - margin.right])
+                
+                let y = d3.scaleBand()
+                        .domain(data.names)
+                        .rangeRound([margin.top, margin.top + innerHeight])
+                
+                let color = d3.scaleSequentialSqrt([0, d3.max(data.values, d => d3.max(d))], d3.interpolatePuRd)
+
+                let xAxis = g => g
+                                .call(g => g.append("g")
+                                .attr("transform", `translate(0,${margin.top})`)
+                                .call(d3.axisTop(x).ticks(null, "d"))
+                                .call(g => g.select(".domain").remove()))
+                                .call(g => g.append("g")
+                                .attr("transform", `translate(0,${innerHeight + margin.top + 4})`)
+                                .call(d3.axisBottom(x)
+                                    .tickValues([data.year])
+                                    .tickFormat(x => x)
+                                    .tickSize(-innerHeight - 10))
+                                .call(g => g.select(".tick text")
+                                    .clone()
+                                    .attr("dy", "2em")
+                                    .style("font-weight", "bold")
+                                    .text("Measles vaccine introduced"))
+                                .call(g => g.select(".domain").remove()))
+
+                let yAxis = g => g
+                            .attr("transform", `translate(${margin.left},0)`)
+                            .call(d3.axisLeft(y).tickSize(0))
+                            .call(g => g.select(".domain").remove())
+
+                const svg = d3.select('body').append('svg')
+                            .attr("viewBox", [0, 0, width, innerHeight + margin.top + margin.bottom])
+                            .attr("font-family", "sans-serif")
+                            .attr("font-size", 10);
+
+                svg.append('g')
+                    .call(xAxis)
+                
+                svg.append('g')
+                    .call(yAxis)
+                
+                svg.append('g')
+                    .selectAll('g')
+                    .data(data.values)
+                    .join('g')
+                    .attr("transform", (d, i) => `translate(0,${y(data.names[i])})`)
+                    .selectAll("rect")
+                    .data(d => d)
+                    .join("rect")
+                    .attr("x", (d, i) => x(data.years[i]) + 1)
+                    .attr("width", (d, i) => x(data.years[i] + 1) - x(data.years[i]) - 1)
+                    .attr("height", y.bandwidth() - 1)
+                    .attr("fill", d => isNaN(d) ? "#eee" : d === 0 ? "#fff" : color(d))
+                    .append("title")
+                    .text((d, i) => `${format(d)} per 100,000 people in ${data.years[i]}`);
+            }
+            drawPixelMap()
+        </script>
+        
+    </body>
+</html>
