@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.7.0/d3.min.js" integrity="sha512-cd6CHE+XWDQ33ElJqsi0MdNte3S+bQY819f7p3NUHgwQQLXSKjE4cPZTeGNI+vaxZynk1wVU3hoHmow3m089wA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    </head>
+    <body>
+        <script async >
+            // fetch('https://static.observableusercontent.com/files/bee673b386dd058ab8d2cf353acbedc6aa01ebd1e6f63e2a9ab1b4273c7e6efd1eeea526345e4be7f0012d5db3ec743ef39ad9e6a043c196670bf9658cb02e79')
+            // .then(response => response.text())
+            // .then(txt => console.log(txt))
+            //console.log(data)
+            async function  drawStack(){
+                let margin = ({top: 20, right: 30, bottom: 30, left: 40});
+                let width = 800;
+                let height = 500;
+
+                let response =await fetch("https://static.observableusercontent.com/files/7cbdbc28fc4f3b5cb40e26cdf411c88807dd134ad13cac7576ee0abe81f834d1fc9d8dcddca522d9f52d329396319a5c7e61e43c83074080c3e3f97189909ee3")
+                let data = Object.assign(d3.csvParse(await response.text(), d3.autoType), {y: "Unemployment"})
+                let series = d3.stack().keys(data.columns.slice(1))(data)
+                let x = d3.scaleUtc()
+                        .domain(d3.extent(data, d => d.date))
+                        .range([margin.left, width - margin.right])
+
+                let y = d3.scaleLinear()
+                        .domain([0, d3.max(series, d => d3.max(d, d => d[1]))]).nice()
+                        .range([height - margin.bottom, margin.top])
+
+                
+                let area = d3.area()
+                            .x(d => x(d.data.date))
+                            .y0(d => y(d[0]))
+                            .y1(d => y(d[1]))
+
+                let color = d3.scaleOrdinal()
+                        .domain(data.columns.slice(1))
+                        .range(d3.schemeCategory10)
+
+                let xAxis = g => g
+                        .attr("transform", `translate(0,${height - margin.bottom})`)
+                        .call(d3.axisBottom(x).ticks(width / 80).tickSizeOuter(0))
+
+                let yAxis = g => g
+                            .attr("transform", `translate(${margin.left},0)`)
+                            .call(d3.axisLeft(y))
+                            .call(g => g.select(".domain").remove())
+                            .call(g => g.select(".tick:last-of-type text").clone()
+                                .attr("x", 3)
+                                .attr("text-anchor", "start")
+                                .attr("font-weight", "bold")
+                                .text(data.y))
+
+                const svg = d3.select("body").append("svg")
+                    .attr("viewBox", [0, 0, width, height]);
+
+                svg.append("g")
+                    .selectAll("path")
+                    .data(series)
+                    .join("path")
+                    .attr("fill", ({key}) => color(key))
+                    .attr("d", area)
+                    .append("title")
+                    .text(({key}) => key);
+
+                svg.append("g")
+                    .call(xAxis);
+
+                svg.append("g")
+                    .call(yAxis);
+            }
+            drawStack()
+        </script>
+        
+    </body>
+</html>
