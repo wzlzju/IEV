@@ -2,10 +2,18 @@ import './App.css';
 import 'antd/dist/antd.css';
 import { Row, Col } from 'antd';
 import { flagsList, industryList } from './config/fileList'
+import InteractiveForceGraph from './components/force/InteractiveForceGraph';
+import ForceGraphNode from './components/force/ForceGraphNode'
+import ForceGraphLink from './components/force/ForceGraphLink'
+import { data } from './data/graphData'
+import { schemeCategory10 } from 'd3-scale-chromatic'
+import { scaleOrdinal } from 'd3-scale'
+import { continentArray } from './config/simulation';
 
 function App() {
   const industryDir = "./assets/images/industry/"
   const flagsDir = "./assets/images/national-flags/"
+  const scale = scaleOrdinal().domain(continentArray).range(schemeCategory10);
   return (
     <div>
       <Row>
@@ -47,7 +55,26 @@ function App() {
                   <svg height="12vh" width="100%"></svg>
                 </Col>
                 <Col span={10}>
-                  <svg height="36vh" width="100%"></svg>
+                  {/* <ForceGraph height="12vh" width="100%" /> */}
+                  <InteractiveForceGraph
+                    highlightDependencies
+                    simulationOptions={{ animate: true }}
+                    zoom
+                  >
+                    {data.nodes.map(node => (
+                      <ForceGraphNode
+                        key={node.id}
+                        fill={scale(node.continent)}
+                        node={{ ...node, radius: 5 }}
+                      />
+                    ))}
+                    {data.links.map(link => (
+                      <ForceGraphLink
+                        key={`${link.source.id}=>${link.target.id}`}
+                        link={{ target: link.target.id, source: link.source.id, value: link.value }}
+                      />
+                    ))}
+                  </InteractiveForceGraph>
                   <svg height="36vh" width="100%"></svg>
                 </Col>
               </Row>

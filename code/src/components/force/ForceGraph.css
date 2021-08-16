@@ -1,0 +1,12 @@
+.force-interactive .force-node {
+    cursor: pointer;
+}
+
+.force-label {
+    pointer-events: none;
+}
+
+.force-label::selection {
+    background: none;
+}
+  
