@@ -6,14 +6,23 @@ import InteractiveForceGraph from './components/force/InteractiveForceGraph';
 import ForceGraphNode from './components/force/ForceGraphNode'
 import ForceGraphLink from './components/force/ForceGraphLink'
 import { data } from './data/graphData'
+import {areaData} from './data/areaData'
 import { schemeCategory10 } from 'd3-scale-chromatic'
 import { scaleOrdinal } from 'd3-scale'
 import { continentArray } from './config/simulation';
+import AreaChart from './components/stackChart/AreaChart';
 
+console.log(AreaChart)
+console.log(InteractiveForceGraph)
 function App() {
   const industryDir = "./assets/images/industry/"
   const flagsDir = "./assets/images/national-flags/"
   const scale = scaleOrdinal().domain(continentArray).range(schemeCategory10);
+
+  var tooltipArea = function(y, cumulative, x, label) {
+    return label + " Total: " + cumulative + " X: " + x + " Y: " + y;
+    }
+
   return (
     <div>
       <Row>
@@ -75,7 +84,16 @@ function App() {
                       />
                     ))}
                   </InteractiveForceGraph>
-                  <svg height="36vh" width="100%"></svg>
+                  <AreaChart
+                      data={areaData}
+                      width={400}
+                      height={400}
+                      // width="100%"
+                      // height="36vh"
+                      margin={{top: 10, bottom: 50, left: 50, right: 10}}
+                      interpolate={"basis"}
+                      tooltipHtml={tooltipArea}
+                  />
                 </Col>
               </Row>
             </div>
