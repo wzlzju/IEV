@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import * as d3 from 'd3';
+import { keys } from '../../data/areaData';
 
 const { string } = PropTypes;
 
@@ -10,7 +11,7 @@ const StackDataMixin = {
 
     getDefaultProps() {
         return {
-            keys: [new Date(2015, 0, 1), new Date(2015, 1, 1), new Date(2015, 2, 1), new Date(2015, 3, 1)],
+            keys: keys,
             offset: d3.stackOffsetNone,
             order: d3.stackOrderNone
         };
@@ -25,10 +26,11 @@ const StackDataMixin = {
     },
 
     _stackData(props) {
-        const { keys, offset, order } = props;
+        const { keys, offset, order, colorScale } = props;
+        colorScale.domain(keys)
         const stack = d3
             .stack()
-            .keys(["apples", "bananas", "cherries", "dates"])
+            .keys(keys)
             .offset(offset)
             .order(order);
         console.log(this._data)

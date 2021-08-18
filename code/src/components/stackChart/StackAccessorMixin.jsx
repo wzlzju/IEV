@@ -15,7 +15,7 @@ const StackAccessorMixin = {
         return {
             label: stack => stack.label,
             values: stack => stack.values,
-            x: d => d.data.month,
+            x: d => d.data.date,
             y: d => d[0],
             y1: d => d[1]
         };

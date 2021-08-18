@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import * as d3 from 'd3';
+import { years } from '../../data/areaData';
 
 const { number } = PropTypes;
 
@@ -40,12 +41,11 @@ const DefaultScalesMixin = {
 
     _makeXScale(props) {
         console.log(this._data)
-        const { keys } = props;
         const data = this._data;
-        console.log(keys[0])
-        if (typeof keys[0] === 'number') {
+        console.log(years[0])
+        if (typeof years[0] === 'number') {
             return this._makeLinearXScale(props);
-        } else if (typeof keys[0].getMonth === 'function') {
+        } else if (typeof years[0].getMonth === 'function') {
             return this._makeTimeXScale(props);
         } else {
             return this._makeBandXScale(props);
@@ -85,9 +85,9 @@ const DefaultScalesMixin = {
     },
 
     _makeTimeXScale(props) {
-        const { x, keys,values } = props;
-        const minDate = d3.min(keys);
-        const maxDate = d3.max(keys);
+        const { x, values } = props;
+        const minDate = d3.min(years);
+        const maxDate = d3.max(years);
         console.log(this._data, minDate, maxDate)
         const scale = d3
             .scaleTime()

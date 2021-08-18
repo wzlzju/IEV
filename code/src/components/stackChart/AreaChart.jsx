@@ -15,6 +15,7 @@ import StackAccessorMixin from './StackAccessorMixin';
 import StackDataMixin from './StackDataMixin';
 import DefaultScalesMixin from './DefaultScalesMixin';
 import TooltipMixin from './TooltipMixin';
+import { years } from '../../data/areaData';
 
 const { array, func, string } = PropTypes;
 
@@ -36,13 +37,13 @@ const DataSet = createReactClass({
             onMouseEnter,
             onMouseLeave
         } = this.props;
-
+        console.log(data)
         const areas = data.map((stack, index) =>
             <Path
                 key={`${label(stack)}.${index}`}
                 className="area"
                 stroke="none"
-                // fill={colorScale(label(stack))}
+                fill={colorScale(stack.key)}
                 d={area(stack)}
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onMouseLeave}
@@ -169,7 +170,7 @@ const AreaChart = createReactClass({
             console.log(xScale(keys[Math.floor(12/4)]))
         const area = d3
             .area()
-            .x((d, i) => xScale(keys[i])) // 这里取值需要优化
+            .x((d, i) => xScale(years[i])) // 这里取值需要优化
             .y0(d => yScale(d[0]))
             .y1(d => yScale(d[1]))
             .curve(d3.curveBasis);
