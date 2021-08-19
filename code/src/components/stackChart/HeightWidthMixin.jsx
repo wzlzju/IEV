@@ -1,3 +1,4 @@
+// init and update width and height of svg
 const HeightWidthMixin = {
     componentWillMount() {
         this._calculateInner(this.props);
@@ -12,7 +13,6 @@ const HeightWidthMixin = {
 
         this._innerHeight = height - margin.top - margin.bottom;
         this._innerWidth = width - margin.left - margin.right;
-        console.log(this._innerWidth)
     }
 };
 

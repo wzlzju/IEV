@@ -3,7 +3,7 @@ import * as d3 from 'd3';
 import { years } from '../../data/areaData';
 
 const { number } = PropTypes;
-
+// Init xScale and yScale
 const DefaultScalesMixin = {
     propTypes: {
         barPadding: number
@@ -38,14 +38,14 @@ const DefaultScalesMixin = {
             [this._yScale, this._yIntercept] = [yScale, yIntercept];
         }
     },
-
+    // select xScale type according to param
     _makeXScale(props) {
-        console.log(this._data)
         const data = this._data;
-        console.log(years[0])
-        if (typeof years[0] === 'number') {
+        const { x, values } = this.props
+        
+        if (typeof x(values(data[0])[0]) === 'number') {
             return this._makeLinearXScale(props);
-        } else if (typeof years[0].getMonth === 'function') {
+        } else if (typeof x(values(data[0])[0]).getMonth === 'function') {
             return this._makeTimeXScale(props);
         } else {
             return this._makeBandXScale(props);
@@ -86,8 +86,8 @@ const DefaultScalesMixin = {
 
     _makeTimeXScale(props) {
         const { x, values } = props;
-        const minDate = d3.min(years);
-        const maxDate = d3.max(years);
+        const minDate = d3.min(values(this._data[0]), x);
+        const maxDate = d3.max(values(this._data[0]), x);
         console.log(this._data, minDate, maxDate)
         const scale = d3
             .scaleTime()
@@ -96,7 +96,7 @@ const DefaultScalesMixin = {
 
         return [scale, 0];
     },
-
+    // select xScale type according to param
     _makeYScale(props) {
         const { y } = props;
         const data = this._data;

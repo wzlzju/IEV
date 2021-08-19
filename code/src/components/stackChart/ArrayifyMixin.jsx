@@ -1,3 +1,5 @@
+// init component data 
+// exchange data type into array
 const ArrayifyMixin = {
     componentWillMount() {
         this._arrayify(this.props);

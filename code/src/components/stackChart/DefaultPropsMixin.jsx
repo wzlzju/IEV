@@ -3,6 +3,7 @@ import * as d3 from 'd3';
 
 const { oneOfType, object, array, shape, func, number } = PropTypes;
 
+// Chart level props
 const DefaultPropsMixin = {
     propTypes: {
         data: oneOfType([object, array]).isRequired,

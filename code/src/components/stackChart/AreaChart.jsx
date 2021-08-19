@@ -45,7 +45,7 @@ const DataSet = createReactClass({
                 stroke="none"
                 fill={colorScale(stack.key)}
                 d={area(stack)}
-                onMouseEnter={onMouseEnter}
+                onMouseEnter={(e) => onMouseEnter(e, data, stack)}
                 onMouseLeave={onMouseLeave}
                 data={data}
             />
@@ -74,15 +74,17 @@ const AreaChart = createReactClass({
     getDefaultProps() {
         return {
             interpolate: 'linear',
-            stroke: d3.schemeCategory10 // d3.scale.category20()
+            stroke: d3.scaleOrdinal().range(d3.schemeCategory10)  // d3.scale.category20()
         };
     },
-
-    _tooltipHtml(d, position) {
-        const { x, y0, y, values, label } = this.props;
+    // calc tooltip postion and inner text
+    _tooltipHtml(d, selectArea, position) {
+        const { x, y0, y, values, label, keys } = this.props;
+        
+        const selectCountry = selectArea.key;
         const xScale = this._xScale;
         const yScale = this._yScale;
-
+        
         const xValueCursor = xScale.invert(position[0]);
 
         const xBisector = d3.bisector(e => x(e)).right;
@@ -103,31 +105,30 @@ const AreaChart = createReactClass({
         } else {
             xIndex = xIndexLeft;
         }
+        
+        // const yValueCursor = yScale.invert(position[1]);
 
-        const yValueCursor = yScale.invert(position[1]);
-
-        const yBisector = d3.bisector(
-            e => y0(values(e)[xIndex]) + y(values(e)[xIndex])
-        ).left;
-        let yIndex = yBisector(d, yValueCursor);
-        yIndex = yIndex == d.length ? yIndex - 1 : yIndex;
-
-        const yValue = y(values(d[yIndex])[xIndex]);
-        const yValueCumulative =
-            y0(values(d[d.length - 1])[xIndex]) +
-            y(values(d[d.length - 1])[xIndex]);
-
-        const xValue = x(values(d[yIndex])[xIndex]);
+        // console.log(selectArea, yValueCursor)
+        // const yBisector = d3.bisector(
+        //     e => y0(e) //  + y(e[xIndex])
+        // ).left;
+        // // 获取第一个参数的过程提取出来
+        // let yIndex = yBisector(selectArea, yValueCursor);
+        // yIndex = yIndex == d.length ? yIndex - 1 : yIndex;
+        // console.log(yIndex)
+        // const yValue = y(values(d[yIndex])[xIndex]);
+        const yValue =
+            y(selectArea[xIndex]) - y0(selectArea[xIndex]);
+        const xValue = x(values(selectArea)[xIndex]);
 
         const xPos = xScale(xValue);
-        const yPos = yScale(y0(values(d[yIndex])[xIndex]) + yValue);
+        const yPos = yScale(y(selectArea[xIndex]));
 
         return [
             this.props.tooltipHtml(
                 yValue,
-                yValueCumulative,
                 xValue,
-                label(d[yIndex])
+                selectCountry
             ),
             xPos,
             yPos
@@ -167,13 +168,15 @@ const AreaChart = createReactClass({
             .y(e => yScale(y0(e) + y(e)))
             .curve(d3.curveBasis);
 
-            console.log(xScale(keys[Math.floor(12/4)]))
+        colorScale.domain(keys)
+
         const area = d3
             .area()
             .x((d, i) => xScale(years[i])) // 这里取值需要优化
             .y0(d => yScale(d[0]))
             .y1(d => yScale(d[1]))
             .curve(d3.curveBasis);
+        
 
         return (
             <div>
@@ -213,7 +216,7 @@ const AreaChart = createReactClass({
                     />
                     {this.props.children}
                 </Chart>
-                {/* <Tooltip {...this.state.tooltip} /> */}
+                <Tooltip {...this.state.tooltip} />
             </div>
         );
     }

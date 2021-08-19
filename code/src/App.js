@@ -6,7 +6,7 @@ import InteractiveForceGraph from './components/force/InteractiveForceGraph';
 import ForceGraphNode from './components/force/ForceGraphNode'
 import ForceGraphLink from './components/force/ForceGraphLink'
 import { data } from './data/graphData'
-import {areaData} from './data/areaData'
+import {areaData, keys} from './data/areaData'
 import { schemeCategory10 } from 'd3-scale-chromatic'
 import { scaleOrdinal } from 'd3-scale'
 import { continentArray } from './config/simulation';
@@ -19,9 +19,9 @@ function App() {
   const flagsDir = "./assets/images/national-flags/"
   const scale = scaleOrdinal().domain(continentArray).range(schemeCategory10);
 
-  var tooltipArea = function(y, cumulative, x, label) {
-    return label + " Total: " + cumulative + " X: " + x + " Y: " + y;
-    }
+  var tooltipArea = function(y, x, label) {
+    return label + " Year: " + x.getFullYear() + " Expsum: " + y;
+  }
 
   return (
     <div>
@@ -88,6 +88,7 @@ function App() {
                       data={areaData}
                       width={400}
                       height={400}
+                      keys = {keys}
                       // width="100%"
                       // height="36vh"
                       margin={{top: 10, bottom: 50, left: 50, right: 10}}

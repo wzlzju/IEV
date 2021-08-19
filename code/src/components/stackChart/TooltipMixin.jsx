@@ -32,79 +32,82 @@ const TooltipMixin = {
         this._svgNode = ReactDOM.findDOMNode(this).getElementsByTagName(
             'svg'
         )[0];
+        
     },
 
-    // onMouseEnter(e, data) {
-    //     if (!this.props.tooltipHtml) {
-    //         return;
-    //     }
+    onMouseEnter(e, data, stack) {
+        if (!this.props.tooltipHtml) {
+            return;
+        }
+        console.log()
+        e.preventDefault();
+        
+        const {
+            margin,
+            tooltipMode,
+            tooltipOffset,
+            tooltipContained
+        } = this.props;
 
-    //     e.preventDefault();
+        const svg = this._svgNode;
+        let position;
+        // calculate position of event trigger point
+        if (svg.createSVGPoint) {
+            let point = svg.createSVGPoint();
+            console.log(point)
+            point.x = e.clientX;
+            point.y = e.clientY;
+            point = point.matrixTransform(svg.getScreenCTM().inverse());
+            position = [point.x - margin.left, point.y - margin.top];
+        } else {
+            const rect = svg.getBoundingClientRect();
+            position = [
+                e.clientX - rect.left - svg.clientLeft - margin.left,
+                e.clientY - rect.top - svg.clientTop - margin.top
+            ];
+        }
 
-    //     const {
-    //         margin,
-    //         tooltipMode,
-    //         tooltipOffset,
-    //         tooltipContained
-    //     } = this.props;
+        const [html, xPos, yPos] = this._tooltipHtml(data, stack, position);
 
-    //     const svg = this._svgNode;
-    //     let position;
-    //     if (svg.createSVGPoint) {
-    //         let point = svg.createSVGPoint();
-    //         console.log(point)
-    //         point.x = e.clientX, point.y = e.clientY;
-    //         point = point.matrixTransform(svg.getScreenCTM().inverse());
-    //         position = [point.x - margin.left, point.y - margin.top];
-    //     } else {
-    //         const rect = svg.getBoundingClientRect();
-    //         position = [
-    //             e.clientX - rect.left - svg.clientLeft - margin.left,
-    //             e.clientY - rect.top - svg.clientTop - margin.top
-    //         ];
-    //     }
+        const svgTop = svg.getBoundingClientRect().top + margin.top;
+        const svgLeft = svg.getBoundingClientRect().left + margin.left;
 
-    //     const [html, xPos, yPos] = this._tooltipHtml(data, position);
+        let top = 0;
+        let left = 0;
+        // switch tooltip bind mode
+        if (tooltipMode === 'fixed') {
+            top = svgTop + tooltipOffset.top;
+            left = svgLeft + tooltipOffset.left;
+        } else if (tooltipMode === 'element') {
+            top = svgTop + yPos + tooltipOffset.top;
+            left = svgLeft + xPos + tooltipOffset.left;
+        } else {
+            // mouse
+            top = e.clientY + tooltipOffset.top;
+            left = e.clientX + tooltipOffset.left;
+        }
 
-    //     const svgTop = svg.getBoundingClientRect().top + margin.top;
-    //     const svgLeft = svg.getBoundingClientRect().left + margin.left;
+        function lerp(t, a, b) {
+            return (1 - t) * a + t * b;
+        }
 
-    //     let top = 0;
-    //     let left = 0;
+        let translate = 50;
 
-    //     if (tooltipMode === 'fixed') {
-    //         top = svgTop + tooltipOffset.top;
-    //         left = svgLeft + tooltipOffset.left;
-    //     } else if (tooltipMode === 'element') {
-    //         top = svgTop + yPos + tooltipOffset.top;
-    //         left = svgLeft + xPos + tooltipOffset.left;
-    //     } else {
-    //         // mouse
-    //         top = e.clientY + tooltipOffset.top;
-    //         left = e.clientX + tooltipOffset.left;
-    //     }
+        if (tooltipContained) {
+            const t = position[0] / svg.getBoundingClientRect().width;
+            translate = lerp(t, 0, 100);
+        }
 
-    //     function lerp(t, a, b) {
-    //         return (1 - t) * a + t * b;
-    //     }
-
-    //     let translate = 50;
-
-    //     if (tooltipContained) {
-    //         const t = position[0] / svg.getBoundingClientRect().width;
-    //         translate = lerp(t, 0, 100);
-    //     }
-
-    //     this.setState({
-    //         tooltip: {
-    //             top,
-    //             left,
-    //             hidden: false,
-    //             html,
-    //             translate
-    //         }
-    //     });
-    // },
+        this.setState({
+            tooltip: {
+                top,
+                left,
+                hidden: false,
+                html,
+                translate
+            }
+        });
+    },
 
     onMouseLeave(e) {
         if (!this.props.tooltipHtml) {
