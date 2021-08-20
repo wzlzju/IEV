@@ -39,7 +39,7 @@ const TooltipMixin = {
         if (!this.props.tooltipHtml) {
             return;
         }
-        console.log()
+        
         e.preventDefault();
         
         const {

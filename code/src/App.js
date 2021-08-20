@@ -11,6 +11,9 @@ import { schemeCategory10 } from 'd3-scale-chromatic'
 import { scaleOrdinal } from 'd3-scale'
 import { continentArray } from './config/simulation';
 import AreaChart from './components/stackChart/AreaChart';
+import PieChart from './components/pieChart/PieChart';
+import { pieData } from './data/pieData';
+import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 
 console.log(AreaChart)
 console.log(InteractiveForceGraph)
@@ -22,6 +25,14 @@ function App() {
   var tooltipArea = function(y, x, label) {
     return label + " Year: " + x.getFullYear() + " Expsum: " + y;
   }
+
+  var tooltipPie = function(x, y) {
+    return x + ": " + y.toString();
+  };
+
+  const geoUrl =
+  "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json"
+
 
   return (
     <div>
@@ -60,7 +71,26 @@ function App() {
               <Row>
                 <Col span={14}>
                   <svg height="36vh" width="100%"></svg>
-                  <svg height="24vh" width="100%"></svg>
+                  <div>
+                    <PieChart
+                      data={pieData}
+                      width={600}
+                      height={400}
+                      margin={{top: 10, bottom: 10, left: 100, right: 100}}
+                      // tooltipOffset={{top: 175, left: 200}}
+                      tooltipHtml={tooltipPie}
+                      // tooltipMode={'fixed'}
+                      sort={null}
+                    />
+                    <ComposableMap>
+                      <Geographies geography={geoUrl}>
+                        {({geographies}) => geographies.map(geo =>
+                          <Geography key={geo.rsmKey} geography={geo} />
+                        )}
+                      </Geographies>
+                    </ComposableMap>
+                  </div>
+                  {/* <svg height="24vh" width="100%"></svg> */}
                   <svg height="12vh" width="100%"></svg>
                 </Col>
                 <Col span={10}>

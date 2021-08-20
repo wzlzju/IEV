@@ -8,13 +8,13 @@ import Axis from '../common/Axis';
 import Path from '../common/Path';
 import Tooltip from '../common/Tooltip';
 
-import DefaultPropsMixin from './DefaultPropsMixin';
-import HeightWidthMixin from './HeightWidthMixin';
+import DefaultPropsMixin from '../common/DefaultPropsMixin';
+import HeightWidthMixin from '../common/HeightWidthMixin';
 import ArrayifyMixin from './ArrayifyMixin';
 import StackAccessorMixin from './StackAccessorMixin';
 import StackDataMixin from './StackDataMixin';
 import DefaultScalesMixin from './DefaultScalesMixin';
-import TooltipMixin from './TooltipMixin';
+import TooltipMixin from '../common/TooltipMixin';
 import { years } from '../../data/areaData';
 
 const { array, func, string } = PropTypes;
