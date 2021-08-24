@@ -8,6 +8,7 @@
 * Decorators+HOC改写之前的Mixin模式
 * 通过翻阅源码解决问题
 * topojson对于地图数据的解析
+* setState是不是不可以传入函数赋值，传入了就赋值为了undefined
 
 ## ToDo
 

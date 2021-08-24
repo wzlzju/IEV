@@ -15,6 +15,8 @@ import PieChart from './components/pieChart/PieChart';
 import { pieData } from './data/pieData';
 import MapChart from './components/map/MapChart';
 import CountryMap from './components/map/CountryMap';
+import ComposableChart from './components/stackChart/ComposableChart';
+
 
 function App() {
   const industryDir = "./assets/images/industry/"
@@ -111,7 +113,7 @@ function App() {
                       />
                     ))}
                   </InteractiveForceGraph> */}
-                  <AreaChart
+                  {/* <AreaChart
                       data={areaData}
                       width={400}
                       height={400}
@@ -121,6 +123,12 @@ function App() {
                       margin={{top: 10, bottom: 50, left: 50, right: 10}}
                       interpolate={"basis"}
                       tooltipHtml={tooltipArea}
+                  /> */}
+                  <ComposableChart 
+                    data={areaData}
+                    keys = {keys}
+                    width = {400}
+                    height = {400}
                   />
                 </Col>
               </Row>
