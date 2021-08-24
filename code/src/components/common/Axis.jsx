@@ -206,7 +206,7 @@ const Axis = createReactClass({
 
         return (
             <g
-                ref="axis"
+                // ref="axis"
                 className={className}
                 transform={this._getTranslateString()}
                 style={{ shapeRendering: 'crispEdges' }}

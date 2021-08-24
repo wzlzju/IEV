@@ -28,12 +28,15 @@ const TooltipMixin = {
         };
     },
 
-    componentDidMount() {
-        this._svgNode = ReactDOM.findDOMNode(this).getElementsByTagName(
-            'svg'
-        )[0];
+    // componentDidMount() {
+    //     console.log(this.props)
+    //     const { svgRef } = this.props;
+    //     console.log(svgRef)
+    //     this._svgNode = ReactDOM.findDOMNode(this).getElementsByTagName(
+    //         'svg'
+    //     )[0];
         
-    },
+    // },
 
     onMouseEnter(e, data, stack) {
         if (!this.props.tooltipHtml) {
@@ -46,10 +49,11 @@ const TooltipMixin = {
             margin,
             tooltipMode,
             tooltipOffset,
-            tooltipContained
+            tooltipContained,
+            svgRef
         } = this.props;
-
-        const svg = this._svgNode;
+        console.log(svgRef)
+        const svg = svgRef.current;
         let position;
         // calculate position of event trigger point
         if (svg.createSVGPoint) {

@@ -5,14 +5,15 @@ import {
   Geography,
   ZoomableGroup
 } from "react-simple-maps";
-import * as geo from "../../data/worldMapWithState.json"
+import geo from "../../data/output.json"
 
 const CountryMap = ({countryName}) => {
+    console.log(geo)
     return (
         <div>
         <ComposableMap>
             <Geographies geography={geo}>
-                {
+                {   
                     ({ geographies }) =>
                         geographies.map(geo => {
                             return countryName === geo.properties.NAME?<Geography key={geo.rsmKey} geography={geo} />:null;

@@ -12,7 +12,6 @@ export default function useGeographies({ geography, parseGeographies }) {
     if (typeof window === `undefined`) return
 
     if (!geography) return
-
     if (isString(geography)) {
       fetchGeographies(geography).then(geos => {
         if (geos) {
@@ -23,8 +22,6 @@ export default function useGeographies({ geography, parseGeographies }) {
         }
       })
     } else {
-      console.log(geography)
-      debugger
       setOutput({
         geographies: getFeatures(geography, parseGeographies),
         mesh: getMesh(geography),

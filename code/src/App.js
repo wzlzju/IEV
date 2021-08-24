@@ -39,11 +39,11 @@ function App() {
               <h1>Industrial Economics Visualization</h1>
             </div>
             <div className="icon-display">
-              <Row>
+              {/* <Row>
                 <Col className="flags-display" span={12}>
                   <Row className="flags-display">
                     {flagsList.map((item, index) => (
-                      <div className="flags-icon">
+                      <div key={index} className="flags-icon">
                         <img src={require(`${flagsDir}${item}-flag-small.png`).default} alt={`${flagsDir}${item}.png`}/>{item}
                       </div>
                       //<img className="industry-icon" src={require(`./assets/images/industry/icon1.png`).default} alt={`${industryDir}${item}.png`}/>
@@ -53,22 +53,22 @@ function App() {
                 <Col span={12}>
                   <Row className="industry-display">
                   {industryList.map((item, index) => (
-                    <div className="industry-icon">
+                    <div key={index} className="industry-icon">
                       <img src={require(`${industryDir}${item}.png`).default} alt={`${industryDir}${item}.png`}/>
                     </div>
                     //<img className="industry-icon" src={require(`./assets/images/industry/icon1.png`).default} alt={`${industryDir}${item}.png`}/>
                   ))}
                   </Row>
                 </Col>
-              </Row>
+              </Row> */}
             </div>
             <div className="chart-display">
               <Row>
                 <Col span={18}>
                   <svg height="36vh" width="100%"></svg>
-                  <Row>
+                  {/* <Row>
                     <Col span={7}>
-                      {/* <CountryMap countryName="China" /> */}
+                      <CountryMap countryName="China" />
                     </Col>
                     <Col span={10}> 
                       <PieChart
@@ -84,15 +84,15 @@ function App() {
                       <MapChart />
                     </Col>
                     <Col span={7} >
-                      {/* <CountryMap countryName="United States of America" /> */}
+                      <CountryMap countryName="United States of America" />
                     </Col>
-                  </Row>
+                  </Row> */}
                   {/* <svg height="24vh" width="100%"></svg> */}
                   <svg height="12vh" width="100%"></svg>
                 </Col>
                 <Col span={6}>
                   {/* <ForceGraph height="12vh" width="100%" /> */}
-                  <InteractiveForceGraph
+                  {/* <InteractiveForceGraph
                     highlightDependencies
                     simulationOptions={{ animate: true }}
                     zoom
@@ -110,7 +110,7 @@ function App() {
                         link={{ target: link.target.id, source: link.source.id, value: link.value }}
                       />
                     ))}
-                  </InteractiveForceGraph>
+                  </InteractiveForceGraph> */}
                   <AreaChart
                       data={areaData}
                       width={400}
