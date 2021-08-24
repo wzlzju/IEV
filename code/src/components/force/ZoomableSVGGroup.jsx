@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { DEFAULT_SIMULATION_PROPS } from '../../config/simulation';
 
 export const ZOOMABLE_SVG_GROUP_EVENT_NAMES = [
   'onMouseDown',
@@ -57,10 +58,6 @@ export default class ZoomableSVGGroup extends PureComponent {
       matrix: [1, 0, 0, 1, 0, 0],
       scale: 1,
     };
-  }
-
-  componentDidMount() {
-    this.setInitialMatrix();
   }
 
   onMouseDown(event) {
@@ -169,23 +166,6 @@ export default class ZoomableSVGGroup extends PureComponent {
     }
   }
 
-  setInitialMatrix() {
-    const parentSvg = this.el.ownerSVGElement;
-    const transform = parentSvg.createSVGTransform();
-
-    this.setState({
-      scale: 1,
-      matrix: [
-        transform.matrix.a,
-        transform.matrix.b,
-        transform.matrix.c,
-        transform.matrix.d,
-        transform.matrix.e,
-        transform.matrix.f,
-      ],
-    });
-  }
-
   // based on the method of the same name from panzoom
   // https://github.com/anvaka/panzoom/blob/master/index.js
   getScaleMultiplier(delta) {
@@ -288,7 +268,7 @@ export default class ZoomableSVGGroup extends PureComponent {
       ...passthrough
     } = this.props;
     const { matrix, scale } = this.state;
-
+    
     const eventHandler = eventName => (...args) => {
       this[eventName](...args);
       this.props[eventName](...args);
@@ -310,7 +290,7 @@ export default class ZoomableSVGGroup extends PureComponent {
         transform: `matrix(${matrix.join(' ')}) ${transform}`,
       });
     }
-
+    
     return (
       <g ref={/* istanbul ignore next */(c) => { this.el = c; }} {...passthrough} {...zoomProps}>
         <rect

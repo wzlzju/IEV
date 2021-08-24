@@ -13,10 +13,9 @@ import { continentArray } from './config/simulation';
 import AreaChart from './components/stackChart/AreaChart';
 import PieChart from './components/pieChart/PieChart';
 import { pieData } from './data/pieData';
-import { ComposableMap, Geographies, Geography } from "react-simple-maps";
+import MapChart from './components/map/MapChart';
+import CountryMap from './components/map/CountryMap';
 
-console.log(AreaChart)
-console.log(InteractiveForceGraph)
 function App() {
   const industryDir = "./assets/images/industry/"
   const flagsDir = "./assets/images/national-flags/"
@@ -30,15 +29,11 @@ function App() {
     return x + ": " + y.toString();
   };
 
-  const geoUrl =
-  "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json"
-
-
   return (
     <div>
       <Row>
-        <Col span={4}>config area</Col>
-        <Col className="content" span={16}>
+        <Col span={3}>config area</Col>
+        <Col className="content" span={17}>
           <div className="DrawPlot">
             <div className="title">
               <h1>Industrial Economics Visualization</h1>
@@ -69,31 +64,33 @@ function App() {
             </div>
             <div className="chart-display">
               <Row>
-                <Col span={14}>
+                <Col span={18}>
                   <svg height="36vh" width="100%"></svg>
-                  <div>
-                    <PieChart
-                      data={pieData}
-                      width={600}
-                      height={400}
-                      margin={{top: 10, bottom: 10, left: 100, right: 100}}
-                      // tooltipOffset={{top: 175, left: 200}}
-                      tooltipHtml={tooltipPie}
-                      // tooltipMode={'fixed'}
-                      sort={null}
-                    />
-                    <ComposableMap>
-                      <Geographies geography={geoUrl}>
-                        {({geographies}) => geographies.map(geo =>
-                          <Geography key={geo.rsmKey} geography={geo} />
-                        )}
-                      </Geographies>
-                    </ComposableMap>
-                  </div>
+                  <Row>
+                    <Col span={7}>
+                      {/* <CountryMap countryName="China" /> */}
+                    </Col>
+                    <Col span={10}> 
+                      <PieChart
+                        data={pieData}
+                        width={400}
+                        height={400}
+                        margin={{top: 10, bottom: 10, left: 10, right: 10}}
+                        // tooltipOffset={{top: 175, left: 200}}
+                        tooltipHtml={tooltipPie}
+                        // tooltipMode={'fixed'}
+                        sort={null}
+                      />
+                      <MapChart />
+                    </Col>
+                    <Col span={7} >
+                      {/* <CountryMap countryName="United States of America" /> */}
+                    </Col>
+                  </Row>
                   {/* <svg height="24vh" width="100%"></svg> */}
                   <svg height="12vh" width="100%"></svg>
                 </Col>
-                <Col span={10}>
+                <Col span={6}>
                   {/* <ForceGraph height="12vh" width="100%" /> */}
                   <InteractiveForceGraph
                     highlightDependencies

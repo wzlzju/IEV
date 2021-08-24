@@ -25,7 +25,7 @@ const Chart = createReactClass({
             preserveAspectRatio,
             children
         } = this.props;
-        console.log(preserveAspectRatio, children)
+        
         return (
             <svg
                 ref="svg"

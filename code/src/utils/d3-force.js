@@ -75,6 +75,7 @@ function applyAlphaFactors(simulation, options) {
  * @param {*} param1 
  */
 function applyCenterForce(simulation, { height, width }) {
+    width = document.getElementsByClassName('ant-col-6')[0].clientWidth
     // setup a new center force if it doesn't exist.
     if (!simulation.force('center')) {
         simulation.force('center', forceCenter());

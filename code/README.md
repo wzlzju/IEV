@@ -7,6 +7,7 @@
 * Antd在引入之前需要引入CSS
 * Decorators+HOC改写之前的Mixin模式
 * 通过翻阅源码解决问题
+* topojson对于地图数据的解析
 
 ## ToDo
 

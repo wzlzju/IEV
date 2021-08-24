@@ -73,15 +73,11 @@ export default class ForceGraph extends PureComponent {
   constructor(props) {
     super(props);
 
-    const { createSimulation, simulationOptions } = props;
 
-    const data = this.getDataFromChildren();
 
-    this.simulation = createSimulation({
-      ...DEFAULT_SIMULATION_PROPS,
-      ...simulationOptions,
-      data,
-    });
+
+
+    
 
     this.state = {
       linkPositions: {},
@@ -89,10 +85,18 @@ export default class ForceGraph extends PureComponent {
       scale: 1,
     };
 
-    this.bindSimulationTick();
+    
   }
 
   componentDidMount() {
+    const { createSimulation, simulationOptions } = this.props;
+    const data = this.getDataFromChildren();
+    this.simulation = createSimulation({
+      ...DEFAULT_SIMULATION_PROPS,
+      ...simulationOptions,
+      data,
+    });
+    this.bindSimulationTick();
     this.updateSimulation();
   }
 

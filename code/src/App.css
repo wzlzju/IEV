@@ -1,7 +1,8 @@
 .title{
   text-align: center;
-  line-height: 10vh;
-  margin: 0;
+  height: 64px;
+  line-height: 64px;
+  flex: 0 0 auto;
 }
 
 .title h1{
@@ -9,7 +10,8 @@
 }
 
 .icon-display{
-  height: 16vh;
+  height: 120px;
+  flex: 0 0 auto;
   overflow-y: auto;
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
@@ -24,11 +26,13 @@
   justify-content: center;
   align-items: center;
 }
+
 .flags-icon{
   justify-content: center;
   flex: 0 0 20%;
   margin: 15px 0;
 }
+
 .flags-icon img{
   width: 24px;
 }
@@ -38,6 +42,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .industry-icon{
   justify-content: center;
   position: relative;
@@ -51,4 +56,26 @@
   right: 0;
   bottom: 0;
   margin:auto;
+}
+
+.DrawPlot {
+  display: flex;
+  flex: auto;
+  flex-direction: column;
+}
+
+.chart-display {
+  flex: auto;
+  min-height: 0px;
+}
+
+.map-svg {
+  position: absolute;
+  /* transform: translate(0, -50%); */
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 40px;
 }

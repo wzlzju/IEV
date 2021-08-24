@@ -1,7 +1,7 @@
 export const DEFAULT_SIMULATION_PROPS = {
     animate: false,
     width: "100%",
-    height: "36vh",
+    height: "400",
     strength: {},
 };
 
