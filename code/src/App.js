@@ -23,10 +23,6 @@ function App() {
   const flagsDir = "./assets/images/national-flags/"
   const scale = scaleOrdinal().domain(continentArray).range(schemeCategory10);
 
-  var tooltipArea = function(y, x, label) {
-    return label + " Year: " + x.getFullYear() + " Expsum: " + y;
-  }
-
   var tooltipPie = function(x, y) {
     return x + ": " + y.toString();
   };
@@ -41,7 +37,7 @@ function App() {
               <h1>Industrial Economics Visualization</h1>
             </div>
             <div className="icon-display">
-              {/* <Row>
+              <Row>
                 <Col className="flags-display" span={12}>
                   <Row className="flags-display">
                     {flagsList.map((item, index) => (
@@ -62,13 +58,13 @@ function App() {
                   ))}
                   </Row>
                 </Col>
-              </Row> */}
+              </Row>
             </div>
             <div className="chart-display">
               <Row>
                 <Col span={18}>
                   <svg height="36vh" width="100%"></svg>
-                  {/* <Row>
+                  <Row>
                     <Col span={7}>
                       <CountryMap countryName="China" />
                     </Col>
@@ -88,13 +84,13 @@ function App() {
                     <Col span={7} >
                       <CountryMap countryName="United States of America" />
                     </Col>
-                  </Row> */}
+                  </Row>
                   {/* <svg height="24vh" width="100%"></svg> */}
                   <svg height="12vh" width="100%"></svg>
                 </Col>
                 <Col span={6}>
                   {/* <ForceGraph height="12vh" width="100%" /> */}
-                  {/* <InteractiveForceGraph
+                  <InteractiveForceGraph
                     highlightDependencies
                     simulationOptions={{ animate: true }}
                     zoom
@@ -112,18 +108,7 @@ function App() {
                         link={{ target: link.target.id, source: link.source.id, value: link.value }}
                       />
                     ))}
-                  </InteractiveForceGraph> */}
-                  {/* <AreaChart
-                      data={areaData}
-                      width={400}
-                      height={400}
-                      keys = {keys}
-                      // width="100%"
-                      // height="36vh"
-                      margin={{top: 10, bottom: 50, left: 50, right: 10}}
-                      interpolate={"basis"}
-                      tooltipHtml={tooltipArea}
-                  /> */}
+                  </InteractiveForceGraph>
                   <ComposableChart 
                     data={areaData}
                     keys = {keys}

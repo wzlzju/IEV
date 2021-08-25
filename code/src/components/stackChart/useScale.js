@@ -4,7 +4,6 @@ import * as d3 from 'd3'
 
 // 
 const useScale = ({
-    stackData,
     data,
     stackAccessor,
     innerWidth,
@@ -24,7 +23,6 @@ const useScale = ({
             .range([0, innerWidth]);
             
         xScale.current = scale
-        return [scale, 0];
     }, [stackAccessor, data]) 
 
     const makeLinearYScale = useCallback((y, y0, values) => {
@@ -39,12 +37,8 @@ const useScale = ({
             .scaleLinear()
             .domain(extents)
             .range([innerHeight, 0]);
-        console.log(scale.domain(), scale.range())
-        const zero = d3.max([0, scale.domain()[0]]);
-        const yIntercept = scale(zero);
 
         yScale.current = scale
-        return [scale, yIntercept];
     }, [stackAccessor, data])
 
     // if(!initRef.current){
@@ -65,8 +59,7 @@ const useScale = ({
     //     initRef.current = true
     // }
     if(!initRef.current){
-        data = stackData(data)
-        const { x, y, y0, values, label} = stackAccessor
+        const { x, y, y0, values} = stackAccessor
 
         makeTimeXScale(x, values)
         makeLinearYScale(y, y0, values);
