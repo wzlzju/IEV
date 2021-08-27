@@ -4,7 +4,6 @@ import { array, func} from 'prop-types'
 const { useMemo } = require("react");
 
 const Paths = ({data, stackAccessor, area, colorScale, onMouseEnter, onMouseLeave}) => {
-    console.log(data)
     const label = useMemo(() => stackAccessor.label, [stackAccessor])
     const areas = data.map((stack, index) =>
         <Path

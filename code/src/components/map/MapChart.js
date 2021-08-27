@@ -19,7 +19,6 @@ const MapChart = () => {
 
   useEffect(() => {
     csv(`/vulnerability.csv`).then((data) => {
-        console.log(data)
         setData(data);
     });
   }, []);

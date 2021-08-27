@@ -79,7 +79,7 @@ function App() {
                         // tooltipMode={'fixed'}
                         sort={null}
                       />
-                      <MapChart />
+                      {/* <MapChart /> */}
                     </Col>
                     <Col span={7} >
                       <CountryMap countryName="United States of America" />

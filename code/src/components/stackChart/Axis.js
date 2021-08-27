@@ -7,6 +7,7 @@ const { array, func, oneOf, number, string } = PropTypes;
 const Axis = ({
     width = 400,
     height = 400,
+    margin,
     orientation,
     tickArguments = [10],
     tickValues = null,

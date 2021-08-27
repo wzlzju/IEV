@@ -14,6 +14,7 @@ const Geography = ({
   className = "",
   ...restProps
 }) => {
+  console.log(geography)
   const [isPressed, setPressed] = useState(false)
   const [isFocused, setFocus] = useState(false)
 

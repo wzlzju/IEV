@@ -33,6 +33,16 @@ export function getFeatures(geographies, parseGeographies) {
   return parseGeographies ? parseGeographies(feats) : feats
 }
 
+export function getFeature(geography) {
+  const feats = feature(
+    geography,
+    geography.objects[Object.keys(geography.objects)[0]]
+  )
+  // const feats = geoJson.features ? geoJson.features : geoJson
+  console.log(feats)
+  return feats
+}
+
 export function getMesh(geographies) {
   const isTopojson = geographies.type === "Topology"
   if (!isTopojson) return null
@@ -56,6 +66,14 @@ export function prepareFeatures(geographies, path) {
       svgPath: path(d),
     }
   }) : []
+}
+
+export function prepareFeature(geography, path) {
+  return geography? {
+      ...geography,
+      rsmKey: `geo-${0}`,
+      svgPath: path(geography),
+    } : []
 }
 
 export function createConnectorPath(dx = 30, dy = 30, curve = 0.5) {

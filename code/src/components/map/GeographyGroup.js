@@ -1,11 +1,11 @@
 
-import React, { useContext } from "react"
+import React, { useContext, useEffect } from "react"
 import PropTypes from "prop-types"
 
 import { MapContext } from "./MapProvider"
-import useGeographies from "./useGeographies"
+import useGeography from "./useGeography"
 
-const Geographies = ({
+const GeographyGroup = ({
   geography,
   countryName,
   children,
@@ -14,18 +14,18 @@ const Geographies = ({
   ...restProps
 }) => {
   const { path, projection } = useContext(MapContext)
-  const { geographies, outline, borders } = useGeographies({ geography, parseGeographies, countryName })
+  const { geographyCountry } = useGeography({ geography, countryName})
+  console.log(geographyCountry, children)
   return (
     <g className={`rsm-geographies ${className}`} {...restProps}>
       {
-        geographies && geographies.length > 0 &&
-        children({ geographies, outline, borders, path, projection })
+        geographyCountry && geographyCountry.svgPath && children({ geography:geographyCountry })
       }
     </g>
   )
 }
 
-Geographies.propTypes = {
+GeographyGroup.propTypes = {
   geography: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object,
@@ -36,4 +36,4 @@ Geographies.propTypes = {
   className: PropTypes.string,
 }
 
-export default Geographies
+export default GeographyGroup

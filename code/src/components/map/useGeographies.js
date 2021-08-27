@@ -1,10 +1,11 @@
 
-import { useMemo, useState, useEffect, useContext } from "react"
-import { MapContext } from "./MapProvider"
+import { useMemo, useState, useEffect, useContext, useCallback } from "react"
+import { MapContext } from './MapProvider'
 
 import { fetchGeographies, getFeatures, getMesh, prepareFeatures, isString, prepareMesh } from "./utils"
 
-export default function useGeographies({ geography, parseGeographies }) {
+export default function useGeographies({ geography, parseGeographies}) {
+  console.log(MapContext)
   const { path } = useContext(MapContext)
   const [output, setOutput] = useState({})
 
@@ -17,14 +18,14 @@ export default function useGeographies({ geography, parseGeographies }) {
         if (geos) {
           setOutput({
             geographies: getFeatures(geos, parseGeographies),
-            mesh: getMesh(geos),
+            // mesh: getMesh(geos),
           })
         }
       })
     } else {
       setOutput({
         geographies: getFeatures(geography, parseGeographies),
-        mesh: getMesh(geography),
+        // mesh: getMesh(geography),
       })
     }
   }, [geography, parseGeographies])
