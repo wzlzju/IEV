@@ -18,6 +18,8 @@ import ComposableChart from './components/stackChart/ComposableChart';
 import PixelMap from './components/pixelMap/PixelMap';
 import pixelMapData from './data/pixelMapData';
 import FlowMap from './components/flowMap/FlowMap';
+import getSvgsSize from './config/svgSize'
+import { useEffect, useRef, useState } from 'react';
 
 function App() {
   const industryDir = "./assets/images/industry/"
@@ -27,108 +29,128 @@ function App() {
   var tooltipPie = function(x, y) {
     return x + ": " + y.toString();
   };
+  const [svgs, setSvgs] = useState();
+  useEffect(() => {
+    setSvgs(getSvgsSize())
+  }, [])
 
   return (
-    <div>
-      <Row>
-        <Col span={3}>config area</Col>
-        <Col className="content" span={17}>
+    <div className="board">
+      <div className="row">
+        <div className="col-3">config area</div>
+        <div className="content col-17">
           <div className="DrawPlot">
             <div className="title">
               <h1>Industrial Economics Visualization</h1>
             </div>
             <div className="icon-display">
-              <Row>
-                <Col className="flags-display" span={12}>
-                  <Row className="flags-display">
+              <div className="row">
+                <div className="flags-display col-12">
+                  <div className="row" className="flags-display">
                     {flagsList.map((item, index) => (
                       <div key={index} className="flags-icon">
                         <img src={require(`${flagsDir}${item}-flag-small.png`).default} alt={`${flagsDir}${item}.png`}/>{item}
                       </div>
                       //<img className="industry-icon" src={require(`./assets/images/industry/icon1.png`).default} alt={`${industryDir}${item}.png`}/>
                     ))}
-                    </Row>
-                </Col>
-                <Col span={12}>
-                  <Row className="industry-display">
+                    </div>
+                </div>
+                <div className="col-12">
+                  <div className="row" className="industry-display">
                   {industryList.map((item, index) => (
                     <div key={index} className="industry-icon">
                       <img src={require(`${industryDir}${item}.png`).default} alt={`${industryDir}${item}.png`}/>
                     </div>
                     //<img className="industry-icon" src={require(`./assets/images/industry/icon1.png`).default} alt={`${industryDir}${item}.png`}/>
                   ))}
-                  </Row>
-                </Col>
-              </Row>
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="chart-display">
-              <Row>
-                <Col span={18}>
-                  <div width="100%" height="400">
-                    <FlowMap />
+              <div className="row">
+                <div className="col-16">
+                  <div className="flow-map" width="100%" height="400">
+                    {svgs && <FlowMap />}
                   </div>
-                  <Row>
-                    <Col span={7}>
-                      <CountryMap countryName="Russia" />
-                    </Col>
-                    <Col span={10}> 
-                      <PieChart
-                        data={pieData}
-                        width={400}
-                        height={400}
-                        margin={{top: 10, bottom: 10, left: 10, right: 10}}
-                        // tooltipOffset={{top: 175, left: 200}}
-                        tooltipHtml={tooltipPie}
-                        // tooltipMode={'fixed'}
-                        sort={null}
-                      />
-                      <MapChart />
-                    </Col>
-                    <Col span={7} >
-                      <CountryMap countryName="China" />
-                    </Col>
-                  </Row>
+                  <div className="donut-map">
+                    <div className="row">
+                      <div className="col-7">
+                        <div className="country-map">
+                        {svgs && <CountryMap countryName="Russia" />}
+                        </div>
+                      </div>
+                      <div className="col-10"> 
+                      <div className="world-map-donut">
+                      {svgs && (<PieChart
+                          data={pieData}
+                          width={400}
+                          height={400}
+                          margin={{top: 10, bottom: 10, left: 10, right: 10}}
+                          // tooltipOffset={{top: 175, left: 200}}
+                          tooltipHtml={tooltipPie}
+                          // tooltipMode={'fixed'}
+                          sort={null}
+                        /> &&
+                        <MapChart />)
+                      }
+                      </div>
+                      </div>
+                      <div className="col-7">
+                        <div className="country-map">
+                        {svgs && <CountryMap countryName="China" />}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
                   {/* <svg height="24vh" width="100%"></svg> */}
-                  <PixelMap
-                    width={1000}
-                    height={100}
-                    data={pixelMapData}
-                  />
-                </Col>
-                <Col span={6}>
+                  <div className="pixel-map">
+                    {svgs && <PixelMap
+                      width={1000}
+                      height={100}
+                      data={pixelMapData}
+                    />}
+                  </div>
+                </div>
+                <div className="col-8">
                   {/* <ForceGraph height="12vh" width="100%" /> */}
-                  <InteractiveForceGraph
-                    highlightDependencies
-                    simulationOptions={{ animate: true }}
-                    zoom
-                  >
-                    {data.nodes.map(node => (
-                      <ForceGraphNode
-                        key={node.id}
-                        fill={scale(node.continent)}
-                        node={{ ...node, radius: 5 }}
-                      />
-                    ))}
-                    {data.links.map(link => (
-                      <ForceGraphLink
-                        key={`${link.source.id}=>${link.target.id}`}
-                        link={{ target: link.target.id, source: link.source.id, value: link.value }}
-                      />
-                    ))}
-                  </InteractiveForceGraph>
-                  <ComposableChart 
-                    data={areaData}
-                    keys = {keys}
-                    width = {400}
-                    height = {400}
-                  />
-                </Col>
-              </Row>
+                  <div className="force-graph">
+                    {svgs && <InteractiveForceGraph
+                      highlightDependencies
+                      simulationOptions={{ animate: true }}
+                      zoom
+                    >
+                      {data.nodes.map(node => (
+                        <ForceGraphNode
+                          key={node.id}
+                          fill={scale(node.continent)}
+                          node={{ ...node, radius: 5 }}
+                        />
+                      ))}
+                      {data.links.map(link => (
+                        <ForceGraphLink
+                          key={`${link.source.id}=>${link.target.id}`}
+                          link={{ target: link.target.id, source: link.source.id, value: link.value }}
+                        />
+                      ))}
+                    </InteractiveForceGraph>}
+                  </div>
+                  <div className="area-chart">
+                    {svgs && <ComposableChart 
+                      data={areaData}
+                      keys = {keys}
+                      width = {400}
+                      height = {400}
+                    />}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </Col>
-        <Col span={4}>excel</Col>
-      </Row>
+        </div>
+        <div className="col-4">excel</div>
+      </div>
     </div>
   );
 }

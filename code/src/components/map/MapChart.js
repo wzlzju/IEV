@@ -27,6 +27,7 @@ const MapChart = () => {
         center: [0, 12],
         // scale: 147
       }}
+      className="world-map"
     >
       {data.length > 0 && (
         <Geographies geography={geoUrl}>

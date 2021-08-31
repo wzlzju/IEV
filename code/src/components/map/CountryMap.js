@@ -20,7 +20,6 @@ const CountryMap = ({countryName}) => {
     })
     const countryJson = useMemo(() => (getCountryGeoJson(countries, countryName)), [countries, countryName])
     return (
-        <div>
         <ComposableMap geography={countryJson}>
             <GeographyGroup geography={countryJson} countryName={countryName}>
                 {
@@ -28,7 +27,6 @@ const CountryMap = ({countryName}) => {
                 }
             </GeographyGroup>          
         </ComposableMap>
-        </div>
     );
 };
 
