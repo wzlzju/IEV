@@ -10,13 +10,14 @@ import {areaData, keys} from './data/areaData'
 import { schemeCategory10 } from 'd3-scale-chromatic'
 import { scaleOrdinal } from 'd3-scale'
 import { continentArray } from './config/simulation';
-import AreaChart from './components/stackChart/AreaChart';
 import PieChart from './components/pieChart/PieChart';
 import { pieData } from './data/pieData';
 import MapChart from './components/map/MapChart';
 import CountryMap from './components/map/CountryMap';
 import ComposableChart from './components/stackChart/ComposableChart';
-
+import PixelMap from './components/pixelMap/PixelMap';
+import pixelMapData from './data/pixelMapData';
+import FlowMap from './components/flowMap/FlowMap';
 
 function App() {
   const industryDir = "./assets/images/industry/"
@@ -63,10 +64,12 @@ function App() {
             <div className="chart-display">
               <Row>
                 <Col span={18}>
-                  <svg height="36vh" width="100%"></svg>
+                  <div width="100%" height="400">
+                    <FlowMap />
+                  </div>
                   <Row>
                     <Col span={7}>
-                      <CountryMap countryName="China" />
+                      <CountryMap countryName="Russia" />
                     </Col>
                     <Col span={10}> 
                       <PieChart
@@ -79,14 +82,18 @@ function App() {
                         // tooltipMode={'fixed'}
                         sort={null}
                       />
-                      {/* <MapChart /> */}
+                      <MapChart />
                     </Col>
                     <Col span={7} >
-                      <CountryMap countryName="United States of America" />
+                      <CountryMap countryName="China" />
                     </Col>
                   </Row>
                   {/* <svg height="24vh" width="100%"></svg> */}
-                  <svg height="12vh" width="100%"></svg>
+                  <PixelMap
+                    width={1000}
+                    height={100}
+                    data={pixelMapData}
+                  />
                 </Col>
                 <Col span={6}>
                   {/* <ForceGraph height="12vh" width="100%" /> */}

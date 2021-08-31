@@ -1,9 +1,8 @@
-
 import React, { useContext, useEffect } from "react"
 import PropTypes from "prop-types"
 
-import { MapContext } from "./MapProvider"
-import useGeography from "./useGeography"
+import { MapContext } from "../commonMap/MapProvider"
+import useGeography from "../commonMap/useGeography"
 
 const GeographyGroup = ({
   geography,
@@ -13,9 +12,7 @@ const GeographyGroup = ({
   className = "",
   ...restProps
 }) => {
-  const { path, projection } = useContext(MapContext)
   const { geographyCountry } = useGeography({ geography, countryName})
-  console.log(geographyCountry, children)
   return (
     <g className={`rsm-geographies ${className}`} {...restProps}>
       {

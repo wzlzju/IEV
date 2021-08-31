@@ -21,11 +21,11 @@ function initializeData() {
         const curCountry = totalData[1995][id]
         keys.push(curCountry.iso_2digit_alpha)
     })
-    console.log(areaData)
     //init years
 
     return areaData
 }
+console.log(totalData)
 const areaData = initializeData()
 export { areaData, keys, years}
 // export const areaData = d3.transpose(Array.from({length: 3}, () => bumps(200, 10)))

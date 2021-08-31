@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { csv } from "d3-fetch";
 import { scaleLinear } from "d3-scale";
-import ComposableMap from './ComposableMap'
-import Geographies from './Geographies'
-import Geography from './Geography'
-import Sphere from './Sphere'
-import Graticule from './Graticule';
+import ComposableMap from '../commonMap/ComposableMap'
+import Geographies from '../commonMap/Geographies'
+import Geography from '../commonMap/Geography'
 
 const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
@@ -26,22 +24,24 @@ const MapChart = () => {
   return (
     <ComposableMap
       projectionConfig={{
-        // rotate: [-10, 0, 0],
-        scale: 147
+        center: [0, 12],
+        // scale: 147
       }}
     >
       {data.length > 0 && (
         <Geographies geography={geoUrl}>
           {({ geographies }) =>
-            geographies.map((geo) => {
-              const d = data.find((s) => s.ISO3 === geo.properties.ISO_A3);
-              return (
-                <Geography
-                  key={geo.rsmKey}
-                  geography={geo}
-                  fill={d ? colorScale(d["2017"]) : "#F5F4F6"}
-                />
-              );
+            geographies
+              .filter(d => d.properties.REGION_UN !== "Antarctica")
+              .map((geo) => {
+                const d = data.find((s) => s.ISO3 === geo.properties.ISO_A3);
+                return (
+                  <Geography
+                    key={geo.rsmKey}
+                    geography={geo}
+                    fill={d ? colorScale(d["2017"]) : "#F5F4F6"}
+                  />
+                );
             })
           }
         </Geographies>
