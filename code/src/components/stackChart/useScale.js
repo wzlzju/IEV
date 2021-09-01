@@ -9,7 +9,6 @@ const useScale = ({
     innerWidth,
     innerHeight,
 }) => {
-    
     const initRef = useRef()
     const xScale = useRef()
     const yScale = useRef()
@@ -23,7 +22,7 @@ const useScale = ({
             .range([0, innerWidth]);
             
         xScale.current = scale
-    }, [stackAccessor, innerWidth, data]) 
+    }, [innerWidth, data]) 
 
     const makeLinearYScale = useCallback((y, y0, values) => {
         let extents = [
@@ -39,7 +38,7 @@ const useScale = ({
             .range([innerHeight, 0]);
 
         yScale.current = scale
-    }, [stackAccessor, innerHeight, data])
+    }, [innerHeight, data])
 
     // if(!initRef.current){
     //     data = stackData(data)

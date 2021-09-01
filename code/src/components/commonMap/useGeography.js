@@ -2,7 +2,7 @@
 import { useMemo, useState, useEffect, useContext, useCallback } from "react"
 import { MapContext } from './MapProvider'
 
-import { fetchGeographies, getFeature, getMesh, prepareFeature, isString, prepareMesh } from "./utils"
+import { fetchGeographies, prepareFeature, isString } from "./utils"
 
 export default function useGeography({ geography, countryName }) {
   const { path } = useContext(MapContext)
@@ -41,12 +41,12 @@ export default function useGeography({ geography, countryName }) {
   const getCountryGeoJson = useCallback((geos, countryName) => {
     const countriesList = geos.features;
     for(let country of countriesList){
-      if(country["properties"]["ADMIN"] == countryName){
+      if(country["properties"]["ADMIN"] === countryName){
         return country
       }
     }
     return null
-  })
+  }, [])
   useEffect(() => {
     if (typeof window === `undefined`) return
     console.log(geography)
@@ -66,7 +66,7 @@ export default function useGeography({ geography, countryName }) {
         // mesh: getMesh(geography),
       })
     }
-  }, [geography])
+  }, [geography, countryName, getCountryGeoJson])
 
   const { geographyCountry } = useMemo(() => {
       console.log(output.geography)
