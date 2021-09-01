@@ -1,8 +1,8 @@
 
 import { useMemo, useState, useEffect, useContext } from "react"
-import { MapContext } from './MapProvider'
+import { MapContext } from '../CommonMap/MapProvider'
 
-import { fetchGeographies, getFeatures, prepareFeatures, isString, prepareMesh } from "./utils"
+import { fetchGeographies, getFeatures, prepareFeatures, isString, prepareMesh } from "../CommonMap/utils"
 
 export default function useGeographies({ geography, parseGeographies}) {
   console.log(MapContext)

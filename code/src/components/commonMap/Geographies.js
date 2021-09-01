@@ -3,7 +3,7 @@ import React, { useContext } from "react"
 import PropTypes from "prop-types"
 
 import { MapContext } from "./MapProvider"
-import useGeographies from "./useGeographies"
+import useGeographies from "../hooks/useGeographies"
 
 const Geographies = ({
   geography,

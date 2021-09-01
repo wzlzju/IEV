@@ -1,8 +1,8 @@
 
 import { useMemo, useState, useEffect, useContext, useCallback } from "react"
-import { MapContext } from './MapProvider'
+import { MapContext } from '../CommonMap/MapProvider'
 
-import { fetchGeographies, prepareFeature, isString } from "./utils"
+import { fetchGeographies, prepareFeature, isString } from "../CommonMap/utils"
 
 export default function useGeography({ geography, countryName }) {
   const { path } = useContext(MapContext)

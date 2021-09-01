@@ -1,7 +1,7 @@
 import React, { useMemo, useCallback } from "react";
-import ComposableMap from '../commonMap/ComposableMap'
-import Geography from '../commonMap/Geography'
-import GeographyGroup from "./GeographyGroup";
+import ComposableMap from '../CommonMap/ComposableMap'
+import Geography from '../CommonMap/Geography'
+import GeographyGroup from "../CommonMap/GeographyGroup";
 import countries from '../../data/countries.json'
 
 // const geoUrl =

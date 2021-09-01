@@ -1,13 +1,13 @@
 import { useCallback, useMemo, useRef, useState } from 'react'
-import Axis from './Axis'
-import useScale from './useScale'
+import Axis from '../CommonChart/Axis'
+import useScale from '../hooks/useScale'
 import * as d3 from 'd3'
 import { years } from '../../data/areaData'
-import Paths from './Paths'
-import useTooltip from './useToolTip'
-import Tooltip from './Tooltip'
+import Paths from '../CommonChart/Paths'
+import useTooltip from '../hooks/useToolTip'
+import Tooltip from '../CommonChart/Tooltip'
 
-const ComposableChart = ({
+const StackChart = ({
     width,
     height,
     margin = {top: 10, left: 50, right: 10, bottom: 50},
@@ -106,4 +106,4 @@ const ComposableChart = ({
     )
 }
 
-export default ComposableChart
+export default StackChart
