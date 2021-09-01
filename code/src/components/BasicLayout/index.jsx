@@ -1,4 +1,5 @@
 import React from 'react';
+import SearchTable from '../SearchTable';
 import './index.css';
 
 const BasicLayout = () => {
@@ -17,7 +18,7 @@ const BasicLayout = () => {
         <div className="bottom">bottom</div>
       </div>
       <div className="right_menu">
-        right_menu
+        <SearchTable />
       </div>
     </div>
   )
