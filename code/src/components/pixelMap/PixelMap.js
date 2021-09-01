@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-// import Axis from './Axis'
 import useScale from './useScale'
 import * as d3 from 'd3'
 import PixelRect from './PixelRect'

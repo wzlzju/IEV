@@ -1,4 +1,3 @@
-import * as d3 from 'd3'
 import totalData from './57-63_countries-trades_HS92_total_V202102.json'
 
 const keys = []

@@ -10,8 +10,8 @@ import {areaData, keys} from './data/areaData'
 import { schemeCategory10 } from 'd3-scale-chromatic'
 import { scaleOrdinal } from 'd3-scale'
 import { continentArray } from './config/simulation';
-import PieChart from './components/pieChart/PieChart';
-import { pieData } from './data/pieData';
+// import PieChart from './components/pieChart/PieChart';
+// import { pieData } from './data/pieData';
 import MapChart from './components/map/MapChart';
 import CountryMap from './components/map/CountryMap';
 import ComposableChart from './components/stackChart/ComposableChart';
@@ -50,7 +50,7 @@ function App() {
                     {flagsList.map((item, index) => (
                       <li key={index} className="flags-icon">
                         <img src={require(`${flagsDir}${item}-flag-small.png`).default} alt={`${flagsDir}${item}.png`}/>
-                        <span className="country-name">{item}</span>
+                        <p className="country-name">{item}</p>
                       </li>
                       //<img className="industry-icon" src={require(`./assets/images/industry/icon1.png`).default} alt={`${industryDir}${item}.png`}/>
                     ))}
@@ -83,17 +83,18 @@ function App() {
                       </div>
                       <div className="col-10"> 
                       <div className="world-map-donut">
-                      {svgs && (<PieChart
-                          data={pieData}
-                          width={400}
-                          height={400}
-                          margin={{top: 10, bottom: 10, left: 10, right: 10}}
-                          // tooltipOffset={{top: 175, left: 200}}
-                          tooltipHtml={tooltipPie}
-                          // tooltipMode={'fixed'}
-                          sort={null}
-                        /> &&
-                        <MapChart />)
+                      {svgs && 
+                        // (<PieChart
+                        //   data={pieData}
+                        //   width={400}
+                        //   height={400}
+                        //   margin={{top: 10, bottom: 10, left: 10, right: 10}}
+                        //   // tooltipOffset={{top: 175, left: 200}}
+                        //   tooltipHtml={tooltipPie}
+                        //   // tooltipMode={'fixed'}
+                        //   sort={null}
+                        // /> &&
+                        <MapChart />
                       }
                       </div>
                       </div>
