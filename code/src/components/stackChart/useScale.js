@@ -1,5 +1,5 @@
 import { number } from 'prop-types'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useRef } from 'react'
 import * as d3 from 'd3'
 
 // 
@@ -23,7 +23,7 @@ const useScale = ({
             .range([0, innerWidth]);
             
         xScale.current = scale
-    }, [stackAccessor, data]) 
+    }, [stackAccessor, innerWidth, data]) 
 
     const makeLinearYScale = useCallback((y, y0, values) => {
         let extents = [
@@ -39,7 +39,7 @@ const useScale = ({
             .range([innerHeight, 0]);
 
         yScale.current = scale
-    }, [stackAccessor, data])
+    }, [stackAccessor, innerHeight, data])
 
     // if(!initRef.current){
     //     data = stackData(data)

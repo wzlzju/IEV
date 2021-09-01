@@ -3,23 +3,17 @@ const flagsList = [
     'algeria',
     'andorra',
     'angola',
-    'antigua-and-barbuda',
-    'bangladesh',
-    'bosnia-and-herzegovina',
     'botswana',
     'brazil',
     'cambodia',
     'cameroon',
     'canada',
     'cape-verde',
-    'central-african-republic',
     'chad',
     'china',
     'colombia',
     'comoros',
-    'congo-democratic-republic-of-the',
-    'congo-republic-of-the'
-  ]
+]
 
 const industryList = [
     'icon1', 

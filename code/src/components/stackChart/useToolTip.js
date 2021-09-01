@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import { useCallback, useEffect, useMemo, useState } from 'react';
 import * as d3 from 'd3'
 
 const { func, oneOf, bool, objectOf, number } = PropTypes;
@@ -17,16 +16,8 @@ const useTooltip = ({
     setTooltipOption,
     tooltipOption
 }) => {
-    
-    // getInitialState() {
-    //     return {
-    //         tooltip: {
-    //             hidden: true
-    //         }
-    //     };
-    // }
-    const _tooltipHtml = useCallback((d, selectArea, position) => {
-        const { x, y0, y, values, label, keys } = stackAccessor;
+    const _tooltipHtml = (d, selectArea, position) => {
+        const { x, y0, y, values } = stackAccessor;
         
         const selectCountry = selectArea.key;
         
@@ -34,12 +25,12 @@ const useTooltip = ({
 
         const xBisector = d3.bisector(e => x(e)).right;
         let xIndex = xBisector(values(d[0]), xScale.invert(position[0]));
-        xIndex = xIndex == values(d[0]).length ? xIndex - 1 : xIndex;
+        xIndex = xIndex === values(d[0]).length ? xIndex - 1 : xIndex;
 
-        const xIndexRight = xIndex == values(d[0]).length ? xIndex - 1 : xIndex;
+        const xIndexRight = xIndex === values(d[0]).length ? xIndex - 1 : xIndex;
         const xValueRight = x(values(d[0])[xIndexRight]);
 
-        const xIndexLeft = xIndex == 0 ? xIndex : xIndex - 1;
+        const xIndexLeft = xIndex === 0 ? xIndex : xIndex - 1;
         const xValueLeft = x(values(d[0])[xIndexLeft]);
 
         if (
@@ -51,17 +42,6 @@ const useTooltip = ({
             xIndex = xIndexLeft;
         }
         
-        // const yValueCursor = yScale.invert(position[1]);
-
-        // console.log(selectArea, yValueCursor)
-        // const yBisector = d3.bisector(
-        //     e => y0(e) //  + y(e[xIndex])
-        // ).left;
-        // // 获取第一个参数的过程提取出来
-        // let yIndex = yBisector(selectArea, yValueCursor);
-        // yIndex = yIndex == d.length ? yIndex - 1 : yIndex;
-        // console.log(yIndex)
-        // const yValue = y(values(d[yIndex])[xIndex]);
         const yValue =
             y(selectArea[xIndex]) - y0(selectArea[xIndex]);
         const xValue = x(values(selectArea)[xIndex]);
@@ -70,17 +50,10 @@ const useTooltip = ({
         const yPos = yScale(y(selectArea[xIndex]));
         const html = tooltipHtml(yValue, xValue, selectCountry)
         return [html, xPos, yPos]
-    }, [])
-    const onMouseEnter = useCallback((e, data, stack) => {
+    }
+    const onMouseEnter = (e, data, stack) => {
         e.preventDefault();
         
-        // const {
-        //     margin,
-        //     tooltipMode,
-        //     tooltipOffset,
-        //     tooltipContained,
-        //     svgRef
-        // } = this.props;
         const svg = svgRef.current;
         let position;
         // calculate position of event trigger point
@@ -137,22 +110,17 @@ const useTooltip = ({
             html,
             translate
         });
-        console.log(tooltipOption)
-    }, [])
+    }
 
-    const onMouseLeave = useCallback((e) => {
+    const onMouseLeave = (e) => {
         e.preventDefault();
 
         setTooltipOption({
             ...tooltipOption,
             hidden: true
         });
-    }, [])
+    }
 
-    // const tooltipOption = useEffect(() => {
-    //     console.log("update")
-    // }, [tooltipState])
-    // console.log(tooltipOption)
     return [onMouseEnter, onMouseLeave]
 }
 
