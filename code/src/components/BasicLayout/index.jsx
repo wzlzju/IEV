@@ -1,5 +1,6 @@
 import React from 'react';
-import SearchTable from '../SearchTable';
+import SearchTableWithStore from '../../containers/SearchTableWithStore';
+import LeftMenu from '../LeftMenu';
 import './index.css';
 
 const BasicLayout = () => {
@@ -7,7 +8,7 @@ const BasicLayout = () => {
   return (
     <div className="basic_layout">
       <div className="left_menu">
-        left_menu
+        <LeftMenu />
       </div>
       <div className="main_content">
         <div className="top">top</div>
@@ -18,7 +19,7 @@ const BasicLayout = () => {
         <div className="bottom">bottom</div>
       </div>
       <div className="right_menu">
-        <SearchTable />
+        <SearchTableWithStore />
       </div>
     </div>
   )
