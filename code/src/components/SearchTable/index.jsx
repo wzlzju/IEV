@@ -6,11 +6,14 @@ import SearchItem from './SearchItem';
 
 const { Option } = Select;
 
-const SearchTable = () => {
+const SearchTable = (props) => {
 
   const handleChange = (value) => {
     console.log(`selected ${value}`);
   };
+
+  // console.log('table: ', props);
+  const { valueType } = props;
 
   return (
     <div className="search_table">
@@ -39,7 +42,7 @@ const SearchTable = () => {
             importCountry="美国"
             type="农业"
             amount="1200"
-            valueType="rect"
+            valueType={valueType}
           />
           <SearchItem
             year="2004"
@@ -47,7 +50,7 @@ const SearchTable = () => {
             importCountry="美国"
             type="农业"
             amount="1200"
-            valueType="rect"
+            valueType={valueType}
           />
           <SearchItem
             year="2004"
@@ -55,7 +58,7 @@ const SearchTable = () => {
             importCountry="美国"
             type="农业"
             amount="1200"
-            valueType="rect"
+            valueType={valueType}
           />
           <SearchItem
             year="2004"
@@ -63,7 +66,7 @@ const SearchTable = () => {
             importCountry="美国"
             type="农业"
             amount="1200"
-            valueType="rect"
+            valueType={valueType}
           />
           <SearchItem
             year="2004"
@@ -71,7 +74,7 @@ const SearchTable = () => {
             importCountry="美国"
             type="农业"
             amount="1200"
-            valueType="rect"
+            valueType={valueType}
           />
           <SearchItem
             year="2004"
@@ -79,7 +82,7 @@ const SearchTable = () => {
             importCountry="美国"
             type="农业"
             amount="1200"
-            valueType="rect"
+            valueType={valueType}
           />
           <SearchItem
             year="2004"
@@ -87,7 +90,7 @@ const SearchTable = () => {
             importCountry="美国"
             type="农业"
             amount="1200"
-            valueType="rect"
+            valueType={valueType}
           />
           <SearchItem
             year="2004"
@@ -95,7 +98,7 @@ const SearchTable = () => {
             importCountry="美国"
             type="农业"
             amount="1200"
-            valueType="rect"
+            valueType={valueType}
           />
           <SearchItem
             year="2004"
@@ -103,7 +106,7 @@ const SearchTable = () => {
             importCountry="美国"
             type="农业"
             amount="1200"
-            valueType="rect"
+            valueType={valueType}
           />
           <SearchItem
             year="2004"
@@ -111,7 +114,7 @@ const SearchTable = () => {
             importCountry="美国"
             type="农业"
             amount="1200"
-            valueType="rect"
+            valueType={valueType}
           />
           <SearchItem
             year="2004"
@@ -119,7 +122,7 @@ const SearchTable = () => {
             importCountry="美国"
             type="农业"
             amount="1200"
-            valueType="rect"
+            valueType={valueType}
           />
           <SearchItem
             year="2004"
@@ -127,7 +130,7 @@ const SearchTable = () => {
             importCountry="美国"
             type="农业"
             amount="1200"
-            valueType="rect"
+            valueType={valueType}
           />
           <SearchItem
             year="2004"
@@ -135,7 +138,7 @@ const SearchTable = () => {
             importCountry="美国"
             type="农业"
             amount="1200"
-            valueType="rect"
+            valueType={valueType}
           />
           <SearchItem
             year="2004"
@@ -143,7 +146,7 @@ const SearchTable = () => {
             importCountry="美国"
             type="农业"
             amount="1200"
-            valueType="rect"
+            valueType={valueType}
           />
           <SearchItem
             year="2004"
@@ -151,7 +154,7 @@ const SearchTable = () => {
             importCountry="美国"
             type="农业"
             amount="1200"
-            valueType="rect"
+            valueType={valueType}
           />
           <SearchItem
             year="2004"
@@ -159,7 +162,7 @@ const SearchTable = () => {
             importCountry="美国"
             type="农业"
             amount="1200"
-            valueType="rect"
+            valueType={valueType}
           />
           <SearchItem
             year="2004"
@@ -167,7 +170,7 @@ const SearchTable = () => {
             importCountry="美国"
             type="农业"
             amount="1200"
-            valueType="rect"
+            valueType={valueType}
           />
           <SearchItem
             year="2004"
@@ -175,7 +178,7 @@ const SearchTable = () => {
             importCountry="美国"
             type="农业"
             amount="1200"
-            valueType="rect"
+            valueType={valueType}
           />
           <SearchItem
             year="2004"
@@ -183,7 +186,7 @@ const SearchTable = () => {
             importCountry="美国"
             type="农业"
             amount="1200"
-            valueType="rect"
+            valueType={valueType}
           />
           <SearchItem
             year="2004"
@@ -191,7 +194,63 @@ const SearchTable = () => {
             importCountry="美国"
             type="农业"
             amount="1200"
-            valueType="rect"
+            valueType={valueType}
+          />
+          <SearchItem
+            year="2004"
+            exportCountry="中国"
+            importCountry="美国"
+            type="农业"
+            amount="1200"
+            valueType={valueType}
+          />
+          <SearchItem
+            year="2004"
+            exportCountry="中国"
+            importCountry="美国"
+            type="农业"
+            amount="1200"
+            valueType={valueType}
+          />
+          <SearchItem
+            year="2004"
+            exportCountry="中国"
+            importCountry="美国"
+            type="农业"
+            amount="1200"
+            valueType={valueType}
+          />
+          <SearchItem
+            year="2004"
+            exportCountry="中国"
+            importCountry="美国"
+            type="农业"
+            amount="1200"
+            valueType={valueType}
+          />
+          <SearchItem
+            year="2004"
+            exportCountry="中国"
+            importCountry="美国"
+            type="农业"
+            amount="1200"
+            valueType={valueType}
+          />
+          <SearchItem
+            year="2004"
+            exportCountry="中国"
+            importCountry="美国"
+            type="农业"
+            amount="1200"
+            valueType={valueType}
+          />
+          <SearchItem
+            year="2004"
+            exportCountry="中国"
+            importCountry="美国"
+            type="农业"
+            amount="1200"
+            valueType={valueType}
           />
         </div>
       </div>
