@@ -1,24 +1,24 @@
 import React from 'react';
 import SearchTableWithStore from '../../containers/SearchTableWithStore';
 import LeftMenu from '../LeftMenu';
-import './index.css';
+import styles from './index.less';
 
 const BasicLayout = () => {
 
   return (
-    <div className="basic_layout">
-      <div className="left_menu">
+    <div className={styles['basic_layout']}>
+      <div className={styles['left_menu']}>
         <LeftMenu />
       </div>
-      <div className="main_content">
-        <div className="top">top</div>
-        <div className="middle">
-          <div className="item">item1</div>
-          <div className="item">item2</div>
+      <div className={styles['main_content']}>
+        <div className={styles['top']}>top</div>
+        <div className={styles['middle']}>
+          <div className={styles['item']}>item1</div>
+          <div className={styles['item']}>item2</div>
         </div>
-        <div className="bottom">bottom</div>
+        <div className={styles['bottom']}>bottom</div>
       </div>
-      <div className="right_menu">
+      <div className={styles['right_menu']}>
         <SearchTableWithStore />
       </div>
     </div>
