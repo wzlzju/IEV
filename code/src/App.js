@@ -37,7 +37,7 @@ function App() {
   return (
     <div className="board">
       <div className="row">
-        <div className="col-3">config area</div>
+        <div className="col-3 config-area">config area</div>
         <div className="content col-17">
           <div className="DrawPlot">
             <div className="title">
@@ -46,17 +46,18 @@ function App() {
             <div className="icon-display">
               <div className="row">
                 <div className="flags-display col-12">
-                  <div className="row" className="flags-display">
+                  <ul>
                     {flagsList.map((item, index) => (
-                      <div key={index} className="flags-icon">
-                        <img src={require(`${flagsDir}${item}-flag-small.png`).default} alt={`${flagsDir}${item}.png`}/>{item}
-                      </div>
+                      <li key={index} className="flags-icon">
+                        <img src={require(`${flagsDir}${item}-flag-small.png`).default} alt={`${flagsDir}${item}.png`}/>
+                        <span className="country-name">{item}</span>
+                      </li>
                       //<img className="industry-icon" src={require(`./assets/images/industry/icon1.png`).default} alt={`${industryDir}${item}.png`}/>
                     ))}
-                    </div>
+                  </ul>
                 </div>
                 <div className="col-12">
-                  <div className="row" className="industry-display">
+                  <div className="industry-display">
                   {industryList.map((item, index) => (
                     <div key={index} className="industry-icon">
                       <img src={require(`${industryDir}${item}.png`).default} alt={`${industryDir}${item}.png`}/>
@@ -69,13 +70,13 @@ function App() {
             </div>
             <div className="chart-display">
               <div className="row">
-                <div className="col-16">
+                <div className="col-16 main-chart">
                   <div className="flow-map" width="100%" height="400">
                     {svgs && <FlowMap />}
                   </div>
                   <div className="donut-map">
                     <div className="row">
-                      <div className="col-7">
+                      <div className="col-7 country-col">
                         <div className="country-map">
                         {svgs && <CountryMap countryName="Russia" />}
                         </div>
@@ -96,7 +97,7 @@ function App() {
                       }
                       </div>
                       </div>
-                      <div className="col-7">
+                      <div className="col-7 country-col">
                         <div className="country-map">
                         {svgs && <CountryMap countryName="China" />}
                         </div>
@@ -113,7 +114,7 @@ function App() {
                     />}
                   </div>
                 </div>
-                <div className="col-8">
+                <div className="col-8 right-chart">
                   {/* <ForceGraph height="12vh" width="100%" /> */}
                   <div className="force-graph">
                     {svgs && <InteractiveForceGraph
@@ -149,7 +150,7 @@ function App() {
             </div>
           </div>
         </div>
-        <div className="col-4">excel</div>
+        <div className="col-4 excel-area">excel</div>
       </div>
     </div>
   );
