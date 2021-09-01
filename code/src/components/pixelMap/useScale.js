@@ -1,5 +1,5 @@
 import { number } from 'prop-types'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useRef } from 'react'
 import * as d3 from 'd3'
 
 // 
@@ -20,7 +20,7 @@ const useScale = ({
             .range([0, innerWidth]);
             
         xScale.current = scale
-    }, [dataAccessor, data]) 
+    }, [data, innerWidth]) 
 
     const makeBandYScale = useCallback((x, y, values) => {
         const countries = x(data[x(data)[0]])
@@ -31,7 +31,7 @@ const useScale = ({
             .range([innerHeight, 0]);
 
         yScale.current = scale
-    }, [dataAccessor, data])
+    }, [data, innerHeight])
 
     // if(!initRef.current){
     //     data = stackData(data)

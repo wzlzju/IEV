@@ -1,16 +1,12 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
-import createReactClass from 'create-react-class';
 
 const { array, func, oneOf, number, string } = PropTypes;
 
 const Axis = ({
     width = 400,
     height = 400,
-    margin,
     orientation,
-    tickArguments = [10],
-    tickValues = null,
     tickFormat = null,
     tickDirection = 'horizontal',
     innerTickSize = 6,
@@ -26,11 +22,11 @@ const Axis = ({
         if (orientation === 'top') {
             return `translate(0, ${zero})`;
         } else if (orientation === 'bottom') {
-            return `translate(0, ${zero == 0 ? height : zero})`;
+            return `translate(0, ${zero === 0 ? height : zero})`;
         } else if (orientation === 'left') {
             return `translate(${zero}, 0)`;
         } else if (orientation === 'right') {
-            return `translate(${zero == 0 ? width : zero}, 0)`;
+            return `translate(${zero === 0 ? width : zero}, 0)`;
         } else {
             return '';
         }
@@ -149,9 +145,9 @@ const Axis = ({
                     </g>
                 );
                 })  
-        }, [scale.ticks()]);
+        }, [scale, dy, textAnchor, tickFormat, tickRotation, ticks, transform, x, x2, y, y2]);
 
-        const pathElement = useMemo(() => (<path className="domain" d={d} fill="none" stroke="#aaa" />), [])
+        const pathElement = useMemo(() => (<path className="domain" d={d} fill="none" stroke="#aaa" />), [d])
 
         return (
             <g

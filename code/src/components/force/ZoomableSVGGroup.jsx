@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { DEFAULT_SIMULATION_PROPS } from '../../config/simulation';
 
 export const ZOOMABLE_SVG_GROUP_EVENT_NAMES = [
   'onMouseDown',

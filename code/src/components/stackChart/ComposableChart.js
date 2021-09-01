@@ -37,27 +37,31 @@ const ComposableChart = ({
                         .offset(offset)
                         .order(order);
         return stack(data)
-    },[])
-    const stackData = useMemo(() => (stackPrepare(data)), [data])
+    },[keys, offset, order])
+    const stackData = useMemo(() => (stackPrepare(data)), [data, stackPrepare])
+
     const [xScale, yScale] = useScale({data:stackData, stackAccessor, innerWidth, innerHeight})
+
     const area = useMemo(() => (
         d3.area()
           .x((d, i) => xScale(years[i]))
           .y0(d => yScale(d[0]))
           .y1(d => yScale(d[1]))
           .curve(d3.curveBasis)
-    ))
+    ), [xScale, yScale])
+
     const colorScale = useMemo(() => (
         d3.scaleOrdinal()
           .range(d3.schemeCategory10)
-    ))
+    ), [])
+
     const tooltipHtml = useCallback((y, x, label) => {
         return label + " Year: " + x.getFullYear() + " Expsum: " + y;
     }, []) 
+
     const [onMouseEnter, onMouseLeave] = useTooltip({tooltipHtml, stackAccessor, svgRef, margin, xScale, yScale, setTooltipOption, tooltipOption})
     // const tooltipOption2 = useEffect(()=>(tooltipOption), [tooltipOption])
-    console.log(tooltipOption, onMouseEnter)
-    console.log(yScale.range(), yScale.domain())
+
     return (
         <div>
             <svg

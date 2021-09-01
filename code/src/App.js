@@ -1,6 +1,5 @@
 import './App.css';
 import 'antd/dist/antd.css';
-import { Row, Col } from 'antd';
 import { flagsList, industryList } from './config/fileList'
 import InteractiveForceGraph from './components/force/InteractiveForceGraph';
 import ForceGraphNode from './components/force/ForceGraphNode'
@@ -19,16 +18,16 @@ import PixelMap from './components/pixelMap/PixelMap';
 import pixelMapData from './data/pixelMapData';
 import FlowMap from './components/flowMap/FlowMap';
 import getSvgsSize from './config/svgSize'
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
   const industryDir = "./assets/images/industry/"
   const flagsDir = "./assets/images/national-flags/"
   const scale = scaleOrdinal().domain(continentArray).range(schemeCategory10);
 
-  var tooltipPie = function(x, y) {
-    return x + ": " + y.toString();
-  };
+  // var tooltipPie = function(x, y) {
+  //   return x + ": " + y.toString();
+  // };
   const [svgs, setSvgs] = useState();
   useEffect(() => {
     setSvgs(getSvgsSize())

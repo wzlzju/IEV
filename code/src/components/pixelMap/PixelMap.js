@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import useScale from './useScale'
 import * as d3 from 'd3'
 import PixelRect from './PixelRect'
@@ -14,29 +14,34 @@ const PixelMap = ({
     keys,
 }) => {
     const svgRef = useRef()
+    
     const [dataAccessor, ] = useState({
         label: stack => stack.key,
         values: d => d,
         x: d => Object.keys(d),
         y: d => d[1]
     })
-    const [tooltipOption, setTooltipOption] = useState({top:-35, left:0});
+    // const [tooltipOption, setTooltipOption] = useState({top:-35, left:0});
     const [innerHeight, ] = useState(
         height - margin.top - margin.bottom
     )
+
     const [innerWidth, ] = useState(
         width - margin.left - margin.right
     )
-    const extents = [
+
+    const extents = useMemo(() => ([
         0,
         d3.max(dataAccessor.x(data), l => d3.max(dataAccessor.x(data[l]), d => data[l][d]))
-    ]
+    ]), [data, dataAccessor])
+
     const [xScale, yScale] = useScale({data, dataAccessor, innerWidth, innerHeight})
+
     const colorScale = useMemo(() => (
         d3.scaleOrdinal()
           .range(d3.schemeCategory10)
           .domain(extents)
-    ))
+    ), [extents])
     // const tooltipHtml = useCallback((y, x, label) => {
     //     return label + " Year: " + x.getFullYear() + " Expsum: " + y;
     // }, []) 

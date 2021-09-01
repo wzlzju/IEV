@@ -1,7 +1,6 @@
-import React, { useContext, useEffect } from "react"
+import React from "react"
 import PropTypes from "prop-types"
 
-import { MapContext } from "../commonMap/MapProvider"
 import useGeography from "../commonMap/useGeography"
 
 const GeographyGroup = ({

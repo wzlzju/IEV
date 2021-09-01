@@ -61,12 +61,12 @@ const DataSet = createReactClass({
     renderLabel(wedge) {
         const {
             arc,
-            outerArc,
-            radius,
-            strokeWidth,
-            stroke,
-            fill,
-            opacity,
+            // outerArc,
+            // radius,
+            // strokeWidth,
+            // stroke,
+            // fill,
+            // opacity,
             x
         } = this.props;
 
@@ -74,7 +74,6 @@ const DataSet = createReactClass({
         //const labelPos = outerArc.centroid(wedge);
         // labelPos[0] = radius * (this.midAngle(wedge) < Math.PI ? 1 : -1);
 
-        // 这个代码写的好！
         // const textAnchor = this.midAngle(wedge) < Math.PI ? 'start' : 'end';
 
         return (
