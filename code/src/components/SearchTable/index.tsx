@@ -6,9 +6,13 @@ import SearchItem from './SearchItem';
 
 const { Option } = Select;
 
-const SearchTable = (props) => {
+export interface ISearchTableProps {
+  valueType: string;
+};
 
-  const handleChange = (value) => {
+const SearchTable: React.FC<ISearchTableProps> = (props) => {
+
+  const handleChange = (value: string) => {
     console.log(`selected ${value}`);
   };
 

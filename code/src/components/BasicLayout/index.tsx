@@ -1,10 +1,10 @@
 import React from 'react';
-import SearchTableWithStore from '../../containers/SearchTableWithStore';
+import SearchTableWithStore from '@/containers/SearchTableWithStore';
 import LeftMenu from '../LeftMenu';
 import styles from './index.less';
 
 const BasicLayout = () => {
-
+  
   return (
     <div className={styles['basic_layout']}>
       <div className={styles['left_menu']}>
