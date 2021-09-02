@@ -19,7 +19,8 @@
     "paths": {
       "@/*": ["src/*"],
       "@/components/*": ["src/components/*"],
-      "@/containers/*": ["src/containers/*"]
+      "@/containers/*": ["src/containers/*"],
+      "@/types/*": ["src/types/*"]
     }
   },
   "include": ["src", "**/*.ts", "**/*.tsx"],
