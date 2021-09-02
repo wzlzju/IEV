@@ -1,7 +1,9 @@
 import React from 'react';
 import SearchTableWithStore from '../../containers/SearchTableWithStore';
+import ImagesDisplay from '../ImagesDisplay';
 import LeftMenu from '../LeftMenu';
 import styles from './index.less';
+import { Nations, icons } from '../../assets/images'
 
 const BasicLayout = () => {
 
@@ -13,8 +15,19 @@ const BasicLayout = () => {
       <div className={styles['main_content']}>
         <div className={styles['top']}>top</div>
         <div className={styles['middle']}>
-          <div className={styles['item']}>item1</div>
-          <div className={styles['item']}>item2</div>
+          <div className={styles['item']}>
+            <ImagesDisplay
+              imageList = {Nations}
+              column = {5}
+            />
+          </div>
+          <div className={styles['item']}>
+            <ImagesDisplay
+              imageList = {icons}
+              column = {5}
+              size = {30}
+            />
+          </div>
         </div>
         <div className={styles['bottom']}>bottom</div>
       </div>

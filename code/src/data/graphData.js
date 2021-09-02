@@ -19,6 +19,7 @@ function initializeData(year, data) {
         })
         return total
     }, []);
+    debugger
     // var ulinks = Object.keys(curData).map(function(v,i){ if(curData[v].implist.length>0) return {target: i,
     //     source: Object.keys(curData).indexOf(curData[v].implist[0][0]),
     //     value: curData[v].implist[0][1]}; });
