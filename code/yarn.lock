@@ -1931,7 +1931,7 @@
 
 "@types/react-dom@^17.0.9":
   version "17.0.9"
-  resolved "https://registry.nlark.com/@types/react-dom/download/@types/react-dom-17.0.9.tgz?cache=0&sync_timestamp=1629708976357&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Freact-dom%2Fdownload%2F%40types%2Freact-dom-17.0.9.tgz#441a981da9d7be117042e1a6fd3dac4b30f55add"
+  resolved "https://registry.nlark.com/@types/react-dom/download/@types/react-dom-17.0.9.tgz?cache=0&sync_timestamp=1629708935856&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Freact-dom%2Fdownload%2F%40types%2Freact-dom-17.0.9.tgz#441a981da9d7be117042e1a6fd3dac4b30f55add"
   integrity sha1-RBqYHanXvhFwQuGm/T2sSzD1Wt0=
   dependencies:
     "@types/react" "*"

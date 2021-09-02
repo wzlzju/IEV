@@ -1,4 +1,4 @@
-import { UPDATE_VALUE_TYPE } from '../constants/actionTypes';
+import { UPDATE_VALUE_TYPE } from '@/constants/actionTypes';
 
 export const updateValueType = () => {
   return {
