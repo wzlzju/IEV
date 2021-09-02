@@ -1,4 +1,4 @@
-import Path from "../common/Path";
+import Path from "./Path";
 import { array, func} from 'prop-types'
 
 const { useMemo } = require("react");

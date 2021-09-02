@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import createReactClass from 'create-react-class';
 import * as d3 from 'd3';
 
-import Chart from '../common/Chart';
-import Tooltip from '../common/Tooltip';
+import Chart from '../CommonChart/Chart';
+import Tooltip from '../CommonChart/Tooltip';
 
-import DefaultPropsMixin from '../common/DefaultPropsMixin';
-import HeightWidthMixin from '../common/HeightWidthMixin';
-import AccessorMixin from '../common/AccessorMixin';
-import TooltipMixin from '../common/TooltipMixin';
+import DefaultPropsMixin from '../CommonChart/DefaultPropsMixin';
+import HeightWidthMixin from '../CommonChart/HeightWidthMixin';
+import AccessorMixin from '../CommonChart/AccessorMixin';
+import TooltipMixin from '../CommonChart/TooltipMixin';
 
 const { string, array, number, bool, func, any } = PropTypes;
 

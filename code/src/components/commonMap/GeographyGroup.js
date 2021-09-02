@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-import useGeography from "../commonMap/useGeography"
+import useGeography from "../hooks/useGeography"
 
 const GeographyGroup = ({
   geography,
