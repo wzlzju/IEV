@@ -25,7 +25,7 @@ function initializeData(year: number, data: any) {
             };
             total.push(item);
         }
-        return total
+        return total;
     }, [] as {
         target: any,
         source: any,
