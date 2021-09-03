@@ -1,14 +1,35 @@
 import totalData from '@/data/57-63_countries-trades_HS92_total_V202102.json';
 import { schemeCategory10 } from 'd3';
 
-// TODO: 添加类型
+export interface IGraphNode {
+    id: string;
+    name: string;
+    alpha3: string;
+    continent: string;
+    expsum: number;
+    x?: number;
+    y?: number;
+};
+
+export interface IGraphLink {
+    source: IGraphNode;
+    target: IGraphNode;
+    value: number;
+};
+
+export interface IGraphData {
+    nodes: IGraphNode[];
+    links: IGraphLink[];
+    colorMap: Map<string, string>;
+}
+
 function initializeData(year: number, data: any) {
 
-    const gData = { "nodes": [], "links": [] } as any;
+    const gData = {} as IGraphData;
 
     const curData = data[year];
 
-    const nodes = Object.keys(curData).map((v, i) => ({
+    const nodes: IGraphNode[] = Object.keys(curData).map((v, i) => ({
         id: v,
         name: curData[v].country_name_full,
         alpha3: curData[v].iso_3digit_alpha,
@@ -16,7 +37,7 @@ function initializeData(year: number, data: any) {
         expsum: curData[v].expsum,
     }));
 
-    const links = Object.keys(curData).reduce((total, v, i) => {
+    const links: IGraphLink[] = Object.keys(curData).reduce((total, v, i) => {
         if (curData[v].implist.length > 0) {
             const item = {
                 target: nodes[i],
@@ -26,19 +47,16 @@ function initializeData(year: number, data: any) {
             total.push(item);
         }
         return total;
-    }, [] as {
-        target: any,
-        source: any,
-        value: any
-    }[]);
+    }, [] as IGraphLink[]);
 
     gData.nodes = nodes;
     gData.links = links;
+    gData.colorMap = getNodeColor(nodes);
     
     return gData;
 }
 
-function getNodeColor(nodes: any) {
+function getNodeColor(nodes: IGraphNode[]) {
     const continents = new Set();
     for(const node of nodes) {
         continents.add(node.continent);
