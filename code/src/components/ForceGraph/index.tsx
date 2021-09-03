@@ -6,8 +6,7 @@ import {
   forceSimulation,
   forceLink,
   forceCenter,
-  forceCollide,
-  forceRadial
+  forceCollide
 } from 'd3-force';
 import {
   selectAll
@@ -17,6 +16,8 @@ import {
 } from 'd3-scale';
 import ForceLink from './ForceLink';
 import { forceManyBody } from 'd3';
+import { findNodes, getNodeId, highlightNodeById, unhighlightNodeById } from '@/utils/nodeUtils';
+import { findLinkById, highlightLink, unhighlightLink } from '@/utils/linkUtils';
 
 export interface IForceGraphProps {
   width: number;
@@ -26,8 +27,8 @@ export interface IForceGraphProps {
 const ForceGraph: React.FC<IForceGraphProps> = (props) => {
   const { width, height } = props;
   const [year, setYear] = useState<number>(1995);
-  const dataSource = useMemo(() => processGraphData(year), [year]);
-  const { nodes, links } = dataSource;
+  const graphData = useMemo(() => processGraphData(year), [year]);
+  const { nodes, links } = graphData;
 
   // useEffect(() => {
   //   setInterval(() => {
@@ -37,26 +38,27 @@ const ForceGraph: React.FC<IForceGraphProps> = (props) => {
 
   // 按照expsum的值来映射节点的半径
   const minNode = useMemo(() => {
-    return Math.min(...nodes.map((node: any) => node.expsum));
+    return Math.min(...nodes.map(node => node.expsum));
   }, [nodes]);
   const maxNode = useMemo(() => {
-    return Math.max(...nodes.map((node: any) => node.expsum));
+    return Math.max(...nodes.map(node => node.expsum));
   }, [nodes]);
 
   const nodeScale = scaleLinear().domain([minNode, maxNode]).range([2, 6]);
 
   // 按照value值来映射边的长短
   const minLink = useMemo(() => {
-    return Math.min(...links.map((link: any) => link.value));
+    return Math.min(...links.map(link => link.value));
   }, [links]);
   const maxLink = useMemo(() => {
-    return Math.max(...links.map((link: any) => link.value));
+    return Math.max(...links.map(link => link.value));
   }, [links]);
 
   const linkScale = scaleLinear().domain([minLink, maxLink]).range([4, 8]);
 
-  const simulation = forceSimulation(nodes)
-    .force('link', forceLink(links).id((d: any) => d.id).distance(d => linkScale((d as any)?.value ?? 1)))
+  // 设置布局算法
+  const simulation = forceSimulation(nodes as any)
+    .force('link', forceLink(links as any).id((d: any) => d.id).distance(d => linkScale((d as any)?.value ?? 1)))
     .force('charge', forceManyBody().distanceMax(30))
     .force('collide', forceCollide().radius(5))
     .force('center', forceCenter(width / 2, height / 2))
@@ -65,32 +67,71 @@ const ForceGraph: React.FC<IForceGraphProps> = (props) => {
     simulation.on('tick', () => {
       selectAll(`.${styles.node}`)
         .data(nodes)
-        .attr("cx", d => (d as { x: number }).x)
-        .attr("cy", d => (d as { y: number }).y);
+        .attr("cx", d => d.x as number)
+        .attr("cy", d => d.y as number);
 
       selectAll(`.${styles.link}`)
         .data(links)
-        .attr("x1", d => (d as any).source.x)
-        .attr("y1", d => (d as any).source.y)
-        .attr("x2", d => (d as any).target.x)
-        .attr("y2", d => (d as any).target.y);
+        .attr("x1", d => d.source.x as number)
+        .attr("y1", d => d.source.y as number)
+        .attr("x2", d => d.target.x as number)
+        .attr("y2", d => d.target.y as number);
     });
   }, [simulation, width, height, nodes, links]);
+
+  // enter node高亮
+  const nodeMouseEnterHandler = (event: MouseEvent) => {
+    const filteredNodes = findNodes(event, links);
+    for (const nodeId of filteredNodes) {
+      highlightNodeById(nodeId);
+    }
+  };
+  // leave node取消高亮
+  const nodeMouseLeaveHandler = (event: MouseEvent) => {
+    const filteredNodes = findNodes(event, links);
+    for (const nodeId of filteredNodes) {
+      unhighlightNodeById(graphData, nodeId);
+    }
+  };
+
+  // enter link高亮
+  const linkMouseEnterHandler = (event: MouseEvent) => {
+    const link = findLinkById(event, links);
+    const sourceNodeId = link.source.id;
+    const targetNodeId = link.target.id;
+    highlightLink(link);
+    highlightNodeById(sourceNodeId);
+    highlightNodeById(targetNodeId);
+  };
+
+  // leave link取消高亮
+  const linkMouseLeaveHandler = (event: MouseEvent) => {
+    const link = findLinkById(event, links);
+    const sourceNodeId = link.source.id;
+    const targetNodeId = link.target.id;
+    unhighlightLink(link);
+    unhighlightNodeById(graphData, sourceNodeId);
+    unhighlightNodeById(graphData, targetNodeId);
+  };
 
   return (
     <svg width={width} height={height}>
       <g className={styles.links} stroke="#999">
         {
-          links.map((link: any, index: number) => {
+          links.map((link, index: number) => {
             return (
               <ForceLink
-                id={`${link.source.id}_${link.target.id}`}
+                handlers={{
+                  mouseEnterHandler: linkMouseEnterHandler,
+                  mouseLeaveHandler: linkMouseLeaveHandler
+                }}
+                id={`link${link.source.id}_${link.target.id}`}
                 className={styles.link}
                 key={index}
-                x1={link.source.x}
-                y1={link.source.y}
-                x2={link.target.x}
-                y2={link.target.y}
+                x1={link.source.x as number}
+                y1={link.source.y as number}
+                x2={link.target.x as number}
+                y2={link.target.y as number}
                 attributes={{
                   strokeWidth: 2
                 }}
@@ -101,15 +142,19 @@ const ForceGraph: React.FC<IForceGraphProps> = (props) => {
       </g>
       <g className={styles.nodes}>
         {
-          nodes.map((node: any, index: number) => {
+          nodes.map((node, index: number) => {
             return (
               <ForceNode
-                id={node.name}
+                handlers={{
+                  mouseEnterHandler: nodeMouseEnterHandler,
+                  mouseLeaveHandler: nodeMouseLeaveHandler
+                }}
+                id={`${getNodeId(node.id)}`}
                 className={styles.node}
                 key={node.id}
                 r={nodeScale(node.expsum)}
-                cx={node.x}
-                cy={node.y}
+                cx={node.x as number}
+                cy={node.y as number}
                 attributes={{
                   fill: getNodeColor(nodes).get(node.continent)
                 }} />
