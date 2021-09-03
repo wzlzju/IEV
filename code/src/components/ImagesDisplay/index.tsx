@@ -1,18 +1,21 @@
-import ImageItem from '../ImageItem'
+import ImageItem, { Image } from '../ImageItem'
 import styles from './index.less'
 
-const ImagesDisplay = ({
-    imageList,
-    column,
-    size = '20px'
-}) => {
-    const style = column && {
+export interface IImagesDisplayProps {
+    imageList: Array<Image>;
+    column: number;
+    size: number
+};
+
+const ImagesDisplay: React.FC<IImagesDisplayProps> = (props) => {
+    const { imageList, column, size } = props
+    const style = column ? {
         width:`${100/column}%`
-    }
+    } : {}
     return (
         <div className={styles['image_list']}>
             {
-                imageList.map(item => (
+                imageList.map((item: any) => (
                     <ImageItem
                         image={item}
                         style={style}

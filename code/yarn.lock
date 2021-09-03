@@ -1811,6 +1811,216 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
+"@types/d3-array@*":
+  version "3.0.1"
+  resolved "https://registry.nlark.com/@types/d3-array/download/@types/d3-array-3.0.1.tgz#0ff28ee7052a2e504cb951d17df7437c33d442d6"
+  integrity sha1-D/KO5wUqLlBMuVHRffdDfDPUQtY=
+
+"@types/d3-axis@*":
+  version "3.0.1"
+  resolved "https://registry.nlark.com/@types/d3-axis/download/@types/d3-axis-3.0.1.tgz#6afc20744fa5cc0cbc3e2bd367b140a79ed3e7a8"
+  integrity sha1-avwgdE+lzAy8PivTZ7FAp57T56g=
+  dependencies:
+    "@types/d3-selection" "*"
+
+"@types/d3-brush@*":
+  version "3.0.1"
+  resolved "https://registry.nlark.com/@types/d3-brush/download/@types/d3-brush-3.0.1.tgz#ae5f17ce391935ca88b29000e60ee20452c6357c"
+  integrity sha1-rl8XzjkZNcqIspAA5g7iBFLGNXw=
+  dependencies:
+    "@types/d3-selection" "*"
+
+"@types/d3-chord@*":
+  version "3.0.1"
+  resolved "https://registry.nlark.com/@types/d3-chord/download/@types/d3-chord-3.0.1.tgz?cache=0&sync_timestamp=1629707066237&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fd3-chord%2Fdownload%2F%40types%2Fd3-chord-3.0.1.tgz#54c8856c19c8e4ab36a53f73ba737de4768ad248"
+  integrity sha1-VMiFbBnI5Ks2pT9zunN95HaK0kg=
+
+"@types/d3-color@*":
+  version "3.0.2"
+  resolved "https://registry.nlark.com/@types/d3-color/download/@types/d3-color-3.0.2.tgz?cache=0&sync_timestamp=1629707071439&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fd3-color%2Fdownload%2F%40types%2Fd3-color-3.0.2.tgz#53f2d6325f66ee79afd707c05ac849e8ae0edbb0"
+  integrity sha1-U/LWMl9m7nmv1wfAWshJ6K4O27A=
+
+"@types/d3-contour@*":
+  version "3.0.1"
+  resolved "https://registry.nlark.com/@types/d3-contour/download/@types/d3-contour-3.0.1.tgz?cache=0&sync_timestamp=1629707066393&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fd3-contour%2Fdownload%2F%40types%2Fd3-contour-3.0.1.tgz#9ff4e2fd2a3910de9c5097270a7da8a6ef240017"
+  integrity sha1-n/Ti/So5EN6cUJcnCn2opu8kABc=
+  dependencies:
+    "@types/d3-array" "*"
+    "@types/geojson" "*"
+
+"@types/d3-delaunay@*":
+  version "6.0.0"
+  resolved "https://registry.nlark.com/@types/d3-delaunay/download/@types/d3-delaunay-6.0.0.tgz?cache=0&sync_timestamp=1629707071291&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fd3-delaunay%2Fdownload%2F%40types%2Fd3-delaunay-6.0.0.tgz#c09953ac7e5460997f693d2d7bf3522e0d4a88e6"
+  integrity sha1-wJlTrH5UYJl/aT0te/NSLg1KiOY=
+
+"@types/d3-dispatch@*":
+  version "3.0.1"
+  resolved "https://registry.nlark.com/@types/d3-dispatch/download/@types/d3-dispatch-3.0.1.tgz?cache=0&sync_timestamp=1629707071610&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fd3-dispatch%2Fdownload%2F%40types%2Fd3-dispatch-3.0.1.tgz#a1b18ae5fa055a6734cb3bd3cbc6260ef19676e3"
+  integrity sha1-obGK5foFWmc0yzvTy8YmDvGWduM=
+
+"@types/d3-drag@*":
+  version "3.0.1"
+  resolved "https://registry.nlark.com/@types/d3-drag/download/@types/d3-drag-3.0.1.tgz#fb1e3d5cceeee4d913caa59dedf55c94cb66e80f"
+  integrity sha1-+x49XM7u5NkTyqWd7fVclMtm6A8=
+  dependencies:
+    "@types/d3-selection" "*"
+
+"@types/d3-dsv@*":
+  version "3.0.0"
+  resolved "https://registry.nlark.com/@types/d3-dsv/download/@types/d3-dsv-3.0.0.tgz?cache=0&sync_timestamp=1629707071211&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fd3-dsv%2Fdownload%2F%40types%2Fd3-dsv-3.0.0.tgz#f3c61fb117bd493ec0e814856feb804a14cfc311"
+  integrity sha1-88YfsRe9ST7A6BSFb+uAShTPwxE=
+
+"@types/d3-ease@*":
+  version "3.0.0"
+  resolved "https://registry.nlark.com/@types/d3-ease/download/@types/d3-ease-3.0.0.tgz#c29926f8b596f9dadaeca062a32a45365681eae0"
+  integrity sha1-wpkm+LWW+dra7KBioypFNlaB6uA=
+
+"@types/d3-fetch@*":
+  version "3.0.1"
+  resolved "https://registry.nlark.com/@types/d3-fetch/download/@types/d3-fetch-3.0.1.tgz#f9fa88b81aa2eea5814f11aec82ecfddbd0b8fe0"
+  integrity sha1-+fqIuBqi7qWBTxGuyC7P3b0Lj+A=
+  dependencies:
+    "@types/d3-dsv" "*"
+
+"@types/d3-force@*":
+  version "3.0.3"
+  resolved "https://registry.nlark.com/@types/d3-force/download/@types/d3-force-3.0.3.tgz#76cb20d04ae798afede1ea6e41750763ff5a9c82"
+  integrity sha1-dssg0ErnmK/t4epuQXUHY/9anII=
+
+"@types/d3-format@*":
+  version "3.0.1"
+  resolved "https://registry.nlark.com/@types/d3-format/download/@types/d3-format-3.0.1.tgz#194f1317a499edd7e58766f96735bdc0216bb89d"
+  integrity sha1-GU8TF6SZ7dflh2b5ZzW9wCFruJ0=
+
+"@types/d3-geo@*":
+  version "3.0.2"
+  resolved "https://registry.nlark.com/@types/d3-geo/download/@types/d3-geo-3.0.2.tgz#e7ec5f484c159b2c404c42d260e6d99d99f45d9a"
+  integrity sha1-5+xfSEwVmyxATELSYObZnZn0XZo=
+  dependencies:
+    "@types/geojson" "*"
+
+"@types/d3-hierarchy@*":
+  version "3.0.2"
+  resolved "https://registry.nlark.com/@types/d3-hierarchy/download/@types/d3-hierarchy-3.0.2.tgz#ca63f2f4da15b8f129c5b7dffd71d904cba6aca2"
+  integrity sha1-ymPy9NoVuPEpxbff/XHZBMumrKI=
+
+"@types/d3-interpolate@*":
+  version "3.0.1"
+  resolved "https://registry.nlark.com/@types/d3-interpolate/download/@types/d3-interpolate-3.0.1.tgz#e7d17fa4a5830ad56fe22ce3b4fac8541a9572dc"
+  integrity sha1-59F/pKWDCtVv4izjtPrIVBqVctw=
+  dependencies:
+    "@types/d3-color" "*"
+
+"@types/d3-path@*":
+  version "3.0.0"
+  resolved "https://registry.nlark.com/@types/d3-path/download/@types/d3-path-3.0.0.tgz#939e3a784ae4f80b1fde8098b91af1776ff1312b"
+  integrity sha1-k546eErk+Asf3oCYuRrxd2/xMSs=
+
+"@types/d3-polygon@*":
+  version "3.0.0"
+  resolved "https://registry.nlark.com/@types/d3-polygon/download/@types/d3-polygon-3.0.0.tgz#5200a3fa793d7736fa104285fa19b0dbc2424b93"
+  integrity sha1-UgCj+nk9dzb6EEKF+hmw28JCS5M=
+
+"@types/d3-quadtree@*":
+  version "3.0.2"
+  resolved "https://registry.nlark.com/@types/d3-quadtree/download/@types/d3-quadtree-3.0.2.tgz#433112a178eb7df123aab2ce11c67f51cafe8ff5"
+  integrity sha1-QzESoXjrffEjqrLOEcZ/Ucr+j/U=
+
+"@types/d3-random@*":
+  version "3.0.1"
+  resolved "https://registry.nlark.com/@types/d3-random/download/@types/d3-random-3.0.1.tgz#5c8d42b36cd4c80b92e5626a252f994ca6bfc953"
+  integrity sha1-XI1Cs2zUyAuS5WJqJS+ZTKa/yVM=
+
+"@types/d3-scale-chromatic@*":
+  version "3.0.0"
+  resolved "https://registry.nlark.com/@types/d3-scale-chromatic/download/@types/d3-scale-chromatic-3.0.0.tgz#103124777e8cdec85b20b51fd3397c682ee1e954"
+  integrity sha1-EDEkd36M3shbILUf0zl8aC7h6VQ=
+
+"@types/d3-scale@*":
+  version "4.0.1"
+  resolved "https://registry.nlark.com/@types/d3-scale/download/@types/d3-scale-4.0.1.tgz#fbe8238e2eff27af577d2b7d0b933ae50a546970"
+  integrity sha1-++gjji7/J69XfSt9C5M65QpUaXA=
+  dependencies:
+    "@types/d3-time" "*"
+
+"@types/d3-selection@*":
+  version "3.0.1"
+  resolved "https://registry.nlark.com/@types/d3-selection/download/@types/d3-selection-3.0.1.tgz#e57b01ab69b18b380f68db97b76ceefe62f17191"
+  integrity sha1-5XsBq2mxizgPaNuXt2zu/mLxcZE=
+
+"@types/d3-shape@*":
+  version "3.0.2"
+  resolved "https://registry.nlark.com/@types/d3-shape/download/@types/d3-shape-3.0.2.tgz#4b1ca4ddaac294e76b712429726d40365cd1e8ca"
+  integrity sha1-Sxyk3arClOdrcSQpcm1ANlzR6Mo=
+  dependencies:
+    "@types/d3-path" "*"
+
+"@types/d3-time-format@*":
+  version "4.0.0"
+  resolved "https://registry.nlark.com/@types/d3-time-format/download/@types/d3-time-format-4.0.0.tgz#ee7b6e798f8deb2d9640675f8811d0253aaa1946"
+  integrity sha1-7ntueY+N6y2WQGdfiBHQJTqqGUY=
+
+"@types/d3-time@*":
+  version "3.0.0"
+  resolved "https://registry.nlark.com/@types/d3-time/download/@types/d3-time-3.0.0.tgz#e1ac0f3e9e195135361fa1a1d62f795d87e6e819"
+  integrity sha1-4awPPp4ZUTU2H6Gh1i95XYfm6Bk=
+
+"@types/d3-timer@*":
+  version "3.0.0"
+  resolved "https://registry.nlark.com/@types/d3-timer/download/@types/d3-timer-3.0.0.tgz?cache=0&sync_timestamp=1629707133527&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fd3-timer%2Fdownload%2F%40types%2Fd3-timer-3.0.0.tgz#e2505f1c21ec08bda8915238e397fb71d2fc54ce"
+  integrity sha1-4lBfHCHsCL2okVI445f7cdL8VM4=
+
+"@types/d3-transition@*":
+  version "3.0.1"
+  resolved "https://registry.nlark.com/@types/d3-transition/download/@types/d3-transition-3.0.1.tgz#c9a96125567173d6163a6985b874f79154f4cc3d"
+  integrity sha1-yalhJVZxc9YWOmmFuHT3kVT0zD0=
+  dependencies:
+    "@types/d3-selection" "*"
+
+"@types/d3-zoom@*":
+  version "3.0.1"
+  resolved "https://registry.nlark.com/@types/d3-zoom/download/@types/d3-zoom-3.0.1.tgz?cache=0&sync_timestamp=1629708157157&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fd3-zoom%2Fdownload%2F%40types%2Fd3-zoom-3.0.1.tgz#4bfc7e29625c4f79df38e2c36de52ec3e9faf826"
+  integrity sha1-S/x+KWJcT3nfOOLDbeUuw+n6+CY=
+  dependencies:
+    "@types/d3-interpolate" "*"
+    "@types/d3-selection" "*"
+
+"@types/d3@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.nlark.com/@types/d3/download/@types/d3-7.0.0.tgz#d102ec6ea5741e51a1ff7b8228850db0665ccd27"
+  integrity sha1-0QLsbqV0HlGh/3uCKIUNsGZczSc=
+  dependencies:
+    "@types/d3-array" "*"
+    "@types/d3-axis" "*"
+    "@types/d3-brush" "*"
+    "@types/d3-chord" "*"
+    "@types/d3-color" "*"
+    "@types/d3-contour" "*"
+    "@types/d3-delaunay" "*"
+    "@types/d3-dispatch" "*"
+    "@types/d3-drag" "*"
+    "@types/d3-dsv" "*"
+    "@types/d3-ease" "*"
+    "@types/d3-fetch" "*"
+    "@types/d3-force" "*"
+    "@types/d3-format" "*"
+    "@types/d3-geo" "*"
+    "@types/d3-hierarchy" "*"
+    "@types/d3-interpolate" "*"
+    "@types/d3-path" "*"
+    "@types/d3-polygon" "*"
+    "@types/d3-quadtree" "*"
+    "@types/d3-random" "*"
+    "@types/d3-scale" "*"
+    "@types/d3-scale-chromatic" "*"
+    "@types/d3-selection" "*"
+    "@types/d3-shape" "*"
+    "@types/d3-time" "*"
+    "@types/d3-time-format" "*"
+    "@types/d3-timer" "*"
+    "@types/d3-transition" "*"
+    "@types/d3-zoom" "*"
+
 "@types/eslint@^7.2.6":
   version "7.28.0"
   resolved "https://registry.nlark.com/@types/eslint/download/@types/eslint-7.28.0.tgz?cache=0&sync_timestamp=1629707534236&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Feslint%2Fdownload%2F%40types%2Feslint-7.28.0.tgz#7e41f2481d301c68e14f483fe10b017753ce8d5a"
@@ -1828,6 +2038,11 @@
   version "0.0.39"
   resolved "https://registry.nlark.com/@types/estree/download/@types/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"
   integrity sha1-4Xfmme4bjCLSMXTKqnQiZEOJUJ8=
+
+"@types/geojson@*":
+  version "7946.0.8"
+  resolved "https://registry.nlark.com/@types/geojson/download/@types/geojson-7946.0.8.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fgeojson%2Fdownload%2F%40types%2Fgeojson-7946.0.8.tgz#30744afdb385e2945e22f3b033f897f76b1f12ca"
+  integrity sha1-MHRK/bOF4pReIvOwM/iX92sfEso=
 
 "@types/glob@^7.1.1":
   version "7.1.4"
@@ -1899,7 +2114,7 @@
   resolved "https://registry.nlark.com/@types/minimatch/download/@types/minimatch-3.0.5.tgz?cache=0&sync_timestamp=1629708337307&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fminimatch%2Fdownload%2F%40types%2Fminimatch-3.0.5.tgz#1001cc5e6a3704b83c236027e77f2f58ea010f40"
   integrity sha1-EAHMXmo3BLg8I2An538vWOoBD0A=
 
-"@types/node@*":
+"@types/node@*", "@types/node@^16.7.10":
   version "16.7.10"
   resolved "https://registry.nlark.com/@types/node/download/@types/node-16.7.10.tgz?cache=0&sync_timestamp=1630451099155&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fnode%2Fdownload%2F%40types%2Fnode-16.7.10.tgz#7aa732cc47341c12a16b7d562f519c2383b6d4fc"
   integrity sha1-eqcyzEc0HBKha31WL1GcI4O21Pw=
@@ -1929,6 +2144,13 @@
   resolved "https://registry.nlark.com/@types/q/download/@types/q-1.5.5.tgz?cache=0&sync_timestamp=1629708830339&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fq%2Fdownload%2F%40types%2Fq-1.5.5.tgz#75a2a8e7d8ab4b230414505d92335d1dcb53a6df"
   integrity sha1-daKo59irSyMEFFBdkjNdHctTpt8=
 
+"@types/react-dom@^17.0.9":
+  version "17.0.9"
+  resolved "https://registry.nlark.com/@types/react-dom/download/@types/react-dom-17.0.9.tgz?cache=0&sync_timestamp=1629708935856&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Freact-dom%2Fdownload%2F%40types%2Freact-dom-17.0.9.tgz#441a981da9d7be117042e1a6fd3dac4b30f55add"
+  integrity sha1-RBqYHanXvhFwQuGm/T2sSzD1Wt0=
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-redux@^7.1.16":
   version "7.1.18"
   resolved "https://registry.nlark.com/@types/react-redux/download/@types/react-redux-7.1.18.tgz?cache=0&sync_timestamp=1629708952096&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Freact-redux%2Fdownload%2F%40types%2Freact-redux-7.1.18.tgz#2bf8fd56ebaae679a90ebffe48ff73717c438e04"
@@ -1939,7 +2161,7 @@
     hoist-non-react-statics "^3.3.0"
     redux "^4.0.0"
 
-"@types/react@*", "@types/react@^17.0.0":
+"@types/react@*", "@types/react@^17.0.0", "@types/react@^17.0.19":
   version "17.0.19"
   resolved "https://registry.nlark.com/@types/react/download/@types/react-17.0.19.tgz#8f2a85e8180a43b57966b237d26a29481dacc991"
   integrity sha1-jyqF6BgKQ7V5ZrI30mopSB2syZE=
@@ -11874,6 +12096,11 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.nlark.com/typedarray/download/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
+
+typescript@^4.4.2:
+  version "4.4.2"
+  resolved "https://registry.nlark.com/typescript/download/typescript-4.4.2.tgz#6d618640d430e3569a1dfb44f7d7e600ced3ee86"
+  integrity sha1-bWGGQNQw41aaHftE99fmAM7T7oY=
 
 unbox-primitive@^1.0.1:
   version "1.0.1"

@@ -1,23 +1,27 @@
 import React from 'react';
-import './index.css';
+import styles from './index.less';
 import { Select, Button } from 'antd';
 import dataSource from './data.json';
 import SearchItem from './SearchItem';
+import { ValueType } from '@/types';
 
 const { Option } = Select;
 
-const SearchTable = (props) => {
+export interface ISearchTableProps {
+  valueType: ValueType;
+};
 
-  const handleChange = (value) => {
+const SearchTable: React.FC<ISearchTableProps> = (props) => {
+
+  const handleChange = (value: string) => {
     console.log(`selected ${value}`);
   };
 
-  // console.log('table: ', props);
   const { valueType } = props;
 
   return (
-    <div className="search_table">
-      <div className="search_top">
+    <div className={styles["search_table"]}>
+      <div className={styles["search_top"]}>
         <Select
           defaultValue="lucy"
           onChange={handleChange}
@@ -34,8 +38,8 @@ const SearchTable = (props) => {
           Primary
         </Button>
       </div>
-      <div className="search_list">
-        <div className="search_container">
+      <div className={styles["search_list"]}>
+        <div className={styles["search_container"]}>
           <SearchItem
             year="2004"
             exportCountry="中国"
