@@ -16,6 +16,7 @@ import {
   scaleLinear
 } from 'd3-scale';
 import ForceLink from './ForceLink';
+import { forceManyBody } from 'd3';
 
 export interface IForceGraphProps {
   width: number;
@@ -24,8 +25,15 @@ export interface IForceGraphProps {
 
 const ForceGraph: React.FC<IForceGraphProps> = (props) => {
   const { width, height } = props;
-  const dataSource = processGraphData(1995);
+  const [year, setYear] = useState<number>(1995);
+  const dataSource = useMemo(() => processGraphData(year), [year]);
   const { nodes, links } = dataSource;
+
+  useEffect(() => {
+    setInterval(() => {
+      setYear(year => year + 1);
+    }, 15000);
+  }, []);
 
   // 按照expsum的值来映射节点的半径
   const minNode = useMemo(() => {
@@ -48,15 +56,12 @@ const ForceGraph: React.FC<IForceGraphProps> = (props) => {
   const linkScale = scaleLinear().domain([minLink, maxLink]).range([4, 8]);
 
   const simulation = forceSimulation(nodes)
-    .force('r', forceRadial(d => ((linkScale((d as any)?.radius ?? 5)))))
-    .force('charge', forceCollide().radius(10))
+    .force('link', forceLink(links).id((d: any) => d.id).distance(d => linkScale((d as any)?.value ?? 1)))
+    .force('charge', forceManyBody().distanceMax(30))
+    .force('collide', forceCollide().radius(5))
     .force('center', forceCenter(width / 2, height / 2))
 
   useEffect(() => {
-    const chinaNode = nodes.filter((node: any) => node.name === 'China')[0];
-    chinaNode.fx = width / 2;
-    chinaNode.fy = height / 2;
-
     simulation.on('tick', () => {
       selectAll(`.${styles.node}`)
         .data(nodes)
@@ -79,6 +84,7 @@ const ForceGraph: React.FC<IForceGraphProps> = (props) => {
           links.map((link: any, index: number) => {
             return (
               <ForceLink
+                id={`${link.source.id}_${link.target.id}`}
                 className={styles.link}
                 key={index}
                 x1={link.source.x}

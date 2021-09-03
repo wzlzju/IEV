@@ -7,12 +7,13 @@ export interface IForceLinkProps {
   x2: number;
   y2: number;
   className: string;
+  id: string;
 };
 
 const ForceLink: React.FC<IForceLinkProps> = (props) => {
-  const { attributes = {}, x1, y1, x2, y2, className } = props;
+  const { attributes = {}, x1, y1, x2, y2, className, id } = props;
   return (
-    <line className={className} x1={x1} y1={y1} x2={x2} y2={y2} {...attributes}></line>
+    <line id={id} className={className} x1={x1} y1={y1} x2={x2} y2={y2} {...attributes}></line>
   )
 };
 

@@ -23,7 +23,6 @@ function initializeData(year: number, data: any) {
                 source: nodes[Object.keys(curData).indexOf(curData[v].implist[0][0])],
                 value: curData[v].implist[0][1]
             };
-            (item.source as any).radius = curData[v].implist[0][1];
             total.push(item);
         }
         return total;
