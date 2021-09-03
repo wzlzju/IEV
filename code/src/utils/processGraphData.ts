@@ -34,6 +34,7 @@ function initializeData(year: number, data: any) {
 
     gData.nodes = nodes;
     gData.links = links;
+    gData.colorMap = getNodeColor(nodes);
     
     return gData;
 }

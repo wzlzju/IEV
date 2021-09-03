@@ -6,8 +6,7 @@ import {
   forceSimulation,
   forceLink,
   forceCenter,
-  forceCollide,
-  forceRadial
+  forceCollide
 } from 'd3-force';
 import {
   selectAll
@@ -17,6 +16,8 @@ import {
 } from 'd3-scale';
 import ForceLink from './ForceLink';
 import { forceManyBody } from 'd3';
+import { findNodes, getNodeId, highlightNodeById, unhighlightNodeById } from '@/utils/nodeUtils';
+import { findLinkById, highlightLink, unhighlightLink } from '@/utils/linkUtils';
 
 export interface IForceGraphProps {
   width: number;
@@ -26,8 +27,8 @@ export interface IForceGraphProps {
 const ForceGraph: React.FC<IForceGraphProps> = (props) => {
   const { width, height } = props;
   const [year, setYear] = useState<number>(1995);
-  const dataSource = useMemo(() => processGraphData(year), [year]);
-  const { nodes, links } = dataSource;
+  const graphData = useMemo(() => processGraphData(year), [year]);
+  const { nodes, links } = graphData;
 
   // useEffect(() => {
   //   setInterval(() => {
@@ -55,6 +56,7 @@ const ForceGraph: React.FC<IForceGraphProps> = (props) => {
 
   const linkScale = scaleLinear().domain([minLink, maxLink]).range([4, 8]);
 
+  // 设置布局算法
   const simulation = forceSimulation(nodes)
     .force('link', forceLink(links).id((d: any) => d.id).distance(d => linkScale((d as any)?.value ?? 1)))
     .force('charge', forceManyBody().distanceMax(30))
@@ -77,6 +79,41 @@ const ForceGraph: React.FC<IForceGraphProps> = (props) => {
     });
   }, [simulation, width, height, nodes, links]);
 
+  // enter node高亮
+  const nodeMouseEnterHandler = (event: MouseEvent) => {
+    const filteredNodes = findNodes(event, links);
+    for (const nodeId of filteredNodes) {
+      highlightNodeById(nodeId);
+    }
+  };
+  // leave node取消高亮
+  const nodeMouseLeaveHandler = (event: MouseEvent) => {
+    const filteredNodes = findNodes(event, links);
+    for (const nodeId of filteredNodes) {
+      unhighlightNodeById(graphData, nodeId);
+    }
+  };
+
+  // enter link高亮
+  const linkMouseEnterHandler = (event: MouseEvent) => {
+    const link = findLinkById(event, links);
+    const sourceNodeId = link.source.id;
+    const targetNodeId = link.target.id;
+    highlightLink(link);
+    highlightNodeById(sourceNodeId);
+    highlightNodeById(targetNodeId);
+  };
+
+  // leave link取消高亮
+  const linkMouseLeaveHandler = (event: MouseEvent) => {
+    const link = findLinkById(event, links);
+    const sourceNodeId = link.source.id;
+    const targetNodeId = link.target.id;
+    unhighlightLink(link);
+    unhighlightNodeById(graphData, sourceNodeId);
+    unhighlightNodeById(graphData, targetNodeId);
+  };
+
   return (
     <svg width={width} height={height}>
       <g className={styles.links} stroke="#999">
@@ -84,7 +121,11 @@ const ForceGraph: React.FC<IForceGraphProps> = (props) => {
           links.map((link: any, index: number) => {
             return (
               <ForceLink
-                id={`${link.source.id}_${link.target.id}`}
+                handlers={{
+                  mouseEnterHandler: linkMouseEnterHandler,
+                  mouseLeaveHandler: linkMouseLeaveHandler
+                }}
+                id={`link${link.source.id}_${link.target.id}`}
                 className={styles.link}
                 key={index}
                 x1={link.source.x}
@@ -104,7 +145,11 @@ const ForceGraph: React.FC<IForceGraphProps> = (props) => {
           nodes.map((node: any, index: number) => {
             return (
               <ForceNode
-                id={node.name}
+                handlers={{
+                  mouseEnterHandler: nodeMouseEnterHandler,
+                  mouseLeaveHandler: nodeMouseLeaveHandler
+                }}
+                id={`${getNodeId(node.id)}`}
                 className={styles.node}
                 key={node.id}
                 r={nodeScale(node.expsum)}
