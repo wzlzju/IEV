@@ -18,7 +18,7 @@ const BasicLayout = () => {
           <div className={styles['item']}>item2</div>
         </div>
         <div className={styles['bottom']}>
-          <ForceGraph width={400} height={400} />
+          <ForceGraph width={500} height={500} />
         </div>
       </div>
       <div className={styles['right_menu']}>
