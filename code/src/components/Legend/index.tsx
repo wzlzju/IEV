@@ -1,6 +1,5 @@
 import { CSSProperties } from "react"
 import LegendItem from "./LegendItem"
-import * as d3 from 'd3'
 import styles from './index.less'
 
 export interface ILegend {
@@ -17,6 +16,7 @@ const Legend: React.FC<ILegend> = (props) => {
             {
                 data.map((label: string, index: number) => (
                     <LegendItem
+                        key={label}
                         label={label}
                         fill={color[index % color.length]}
                     />

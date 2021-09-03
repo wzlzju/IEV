@@ -30,6 +30,7 @@ const BasicLayout = () => {
               imageList = {icons}
               column = {5}
               size = {30}
+              style = {{justifyContent: 'center'}}
             />
           </div>
         </div>
