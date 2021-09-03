@@ -85,12 +85,22 @@ const ForceGraph: React.FC<IForceGraphProps> = (props) => {
     for (const nodeId of filteredNodes) {
       highlightNodeById(nodeId);
     }
+    const filteredLinks = links.filter(link =>
+      filteredNodes.includes(link.source.id) && filteredNodes.includes(link.target.id));
+    for(const link of filteredLinks) {
+      highlightLink(link);
+    }
   };
   // leave node取消高亮
   const nodeMouseLeaveHandler = (event: MouseEvent) => {
     const filteredNodes = findNodes(event, links);
     for (const nodeId of filteredNodes) {
       unhighlightNodeById(graphData, nodeId);
+    }
+    const filteredLinks = links.filter(link =>
+      filteredNodes.includes(link.source.id) && filteredNodes.includes(link.target.id));
+    for(const link of filteredLinks) {
+      unhighlightLink(link);
     }
   };
 
