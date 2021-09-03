@@ -7,37 +7,50 @@ import Paths from '../CommonChart/Paths'
 import useTooltip from '../hooks/useToolTip'
 import Tooltip from '../CommonChart/Tooltip'
 
-const StackChart = ({
-    width,
-    height,
-    margin = {top: 10, left: 50, right: 10, bottom: 50},
-    data,
-    keys,
-    offset = d3.stackOffsetNone,
-    order = d3.stackOrderNone
-}) => {
+// enum margin {
+//     top = 10,
+//     bottom = 10,
+//     left = 50,
+//     right = 50
+// }
+
+export interface IStackChart {
+    width: number,
+    height: number,
+    data: Array<object>,
+    keys: Array<string>,
+    // margin: margin
+}
+
+export interface margin {
+    top: number,
+
+}
+
+const StackChart: React.FC<IStackChart> = (props) => {
+    // margin = {top: 10, left: 50, right: 10, bottom: 50},
+    
+    // offset = d3.stackOffsetNone,
+    // order = d3.stackOrderNone
+    const { width, height, data, keys } = props
     const svgRef = useRef()
     const [stackAccessor, ] = useState({
-        label: stack => stack.key,
+        label: (stack:object) => stack.key,
         values: stack => stack.map(d => d.data),
         x: d => d.date,
         y0: d => d[0],
         y: d => d[1]
     })
     const [tooltipOption, setTooltipOption] = useState({top:-35, left:0});
-    const [innerHeight, ] = useState(
-        height - margin.top - margin.bottom
-    )
-    const [innerWidth, ] = useState(
-        width - margin.left - margin.right
-    )
+    const innerHeight = height - margin.top - margin.bottom;
+    const innerWidth = width - margin.left - margin.right;
     const stackPrepare = useCallback((data)=>{
         const stack = d3.stack()
                         .keys(keys)
-                        .offset(offset)
-                        .order(order);
+                        // .offset(offset)
+                        // .order(order);
         return stack(data)
-    },[keys, offset, order])
+    },[keys])
     const stackData = useMemo(() => (stackPrepare(data)), [data, stackPrepare])
 
     const [xScale, yScale] = useScale({data:stackData, stackAccessor, innerWidth, innerHeight})

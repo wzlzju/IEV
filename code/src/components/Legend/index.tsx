@@ -12,7 +12,7 @@ const Legend: React.FC<ILegend> = (props) => {
     const { color, orient, data } = props
     const style = {flexDirection: orient}
     return (
-        <div className={styles['legend']} style={style as CSSProperties}>
+        <div className={styles['legend']} style={style}>
             {
                 data.map((label: string, index: number) => (
                     <LegendItem
