@@ -72,7 +72,7 @@ function getNodeColor(nodes: IGraphNode[]) {
     return colorMap;
 }
 
-const processGraphData = (year: number) => initializeData(year, totalData);
+const processGraphData: (year: number) => IGraphData = (year: number) => initializeData(year, totalData);
 
 export {
     getNodeColor,

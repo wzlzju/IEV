@@ -17,7 +17,7 @@ const ForceNode: React.FC<IForceNodeProps> = (props) => {
   useHighlight(id, true, handlers);
 
   return (
-    <circle id={id} className={className} r={r} cx={cx} cy={cy} {...attributes}></circle>
+    <circle id={id} className={className} r={r} cx={cx} cy={cy} {...attributes} />
   );
 };
 

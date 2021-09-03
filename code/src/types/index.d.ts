@@ -1,6 +1,6 @@
 export type ValueType = 'text' | 'rect';
 
-export type ActionType = {
+export interface ActionType {
   type: string;
   payload?: object;
-};
+}
