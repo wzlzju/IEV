@@ -29,11 +29,11 @@ const ForceGraph: React.FC<IForceGraphProps> = (props) => {
   const dataSource = useMemo(() => processGraphData(year), [year]);
   const { nodes, links } = dataSource;
 
-  useEffect(() => {
-    setInterval(() => {
-      setYear(year => year + 1);
-    }, 15000);
-  }, []);
+  // useEffect(() => {
+  //   setInterval(() => {
+  //     setYear(year => year + 1);
+  //   }, 15000);
+  // }, []);
 
   // 按照expsum的值来映射节点的半径
   const minNode = useMemo(() => {
