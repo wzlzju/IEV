@@ -15,8 +15,9 @@ const ImagesDisplay: React.FC<IImagesDisplayProps> = (props) => {
     return (
         <div className={styles['image_list']}>
             {
-                imageList.map((item: any) => (
+                imageList.map((item: any, index: number) => (
                     <ImageItem
+                        key={index}
                         image={item}
                         style={style}
                         size={size}

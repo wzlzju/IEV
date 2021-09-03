@@ -28,7 +28,7 @@ const SearchItem: React.FC<ISearchItemProps> = (props) => {
     }
 
     return (
-      <div className={styles["rect"]} style={{ width: '50%' }}></div>
+      <div className={styles["rect"]} style={{ width: '50%' }} />
     );
   };
 

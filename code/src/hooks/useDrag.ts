@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect } from 'react';
-import { drag, select, Selection } from 'd3';
+import { useEffect } from 'react';
+import { drag } from 'd3';
 
 export interface IUseDragProps {
   start: () => void;

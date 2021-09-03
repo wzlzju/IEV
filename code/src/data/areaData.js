@@ -15,12 +15,12 @@ function initializeData() {
             ...yearExpSumEachCountry
         }
     })
-    //init keys
+    // init keys
     Object.keys(totalData[1995]).forEach(id => {
         const curCountry = totalData[1995][id]
         keys.push(curCountry.iso_2digit_alpha)
     })
-    //init years
+    // init years
 
     return areaData
 }

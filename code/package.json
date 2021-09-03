@@ -9,8 +9,8 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
-    "@typescript-eslint/eslint-plugin": "^4.5.0",
-    "@typescript-eslint/parser": "^4.5.0",
+    "@typescript-eslint/eslint-plugin": "^4.30.0",
+    "@typescript-eslint/parser": "^4.30.0",
     "antd": "^4.16.11",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.6.0",
@@ -25,13 +25,13 @@
     "d3": "^7.0.1",
     "dotenv": "8.2.0",
     "dotenv-expand": "5.1.0",
-    "eslint": "^7.11.0",
+    "eslint": "^7.32.0",
     "eslint-config-react-app": "^6.0.0",
     "eslint-plugin-flowtype": "^5.2.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jest": "^24.1.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",
-    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react": "^7.25.1",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-testing-library": "^3.9.2",
     "eslint-webpack-plugin": "^2.5.2",
@@ -85,13 +85,9 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "test": "node scripts/test.js",
+    "lint": "eslint src/** --env browser --ext .ts,.tsx,.js,.jsx ",
+    "lint_fix": "eslint src/** --env browser --ext .ts,.tsx,.js,.jsx --fix"
   },
   "browserslist": {
     "production": [
@@ -166,6 +162,8 @@
     "@types/d3": "^7.0.0",
     "@types/node": "^16.7.10",
     "@types/react": "^17.0.19",
-    "@types/react-dom": "^17.0.9"
+    "@types/react-dom": "^17.0.9",
+    "eslint-config-alloy": "^4.3.0",
+    "eslint-loader": "^4.0.2"
   }
 }
