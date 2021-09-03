@@ -1,4 +1,4 @@
-import ImageItem, { Image } from '../ImageItem'
+import ImageItem, { Image } from './ImageItem'
 import styles from './index.less'
 
 export interface IImagesDisplayProps {
@@ -15,9 +15,10 @@ const ImagesDisplay: React.FC<IImagesDisplayProps> = (props) => {
     return (
         <div className={styles['image_list']}>
             {
-                imageList.map((item: any) => (
+                imageList.map((item: Image) => (
                     <ImageItem
                         image={item}
+                        key={item.key}
                         style={style}
                         size={size}
                     />

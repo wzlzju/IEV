@@ -20,7 +20,8 @@
       "@/*": ["src/*"],
       "@/components/*": ["src/components/*"],
       "@/containers/*": ["src/containers/*"],
-      "@/types/*": ["src/types/*"]
+      "@/types/*": ["src/types/*"],
+      "@/assets": ["src/assets/*"],
     }
   },
   "include": ["src", "**/*.ts", "**/*.tsx"],

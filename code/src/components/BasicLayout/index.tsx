@@ -4,9 +4,12 @@ import LeftMenu from '../LeftMenu';
 import styles from './index.less';
 import ForceGraph from '../ForceGraph';
 import ImagesDisplay from '../ImagesDisplay';
-import { Nations, icons } from '../../assets/images'
+import { Nations, icons } from '@/assets/images'
+import Legend from '../Legend';
+import * as d3 from 'd3'
+import { gdpData } from '@/data/gdpData';
+const data = gdpData.map(item => item.name)
 const BasicLayout = () => {
-  
   return (
     <div className={styles['basic_layout']}>
       <div className={styles['left_menu']}>
@@ -32,6 +35,7 @@ const BasicLayout = () => {
         </div>
         <div className={styles['bottom']}>
           <ForceGraph width={400} height={400} />
+          <Legend data={data} orient="row" color={d3.schemeAccent}/>
         </div>
       </div>
       <div className={styles['right_menu']}>
