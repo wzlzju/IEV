@@ -48,12 +48,7 @@ const ForceGraph: React.FC<IForceGraphProps> = (props) => {
   const linkScale = scaleLinear().domain([minLink, maxLink]).range([4, 8]);
 
   const simulation = forceSimulation(nodes)
-    // .force('link',
-    //   forceLink(links)
-    //     .id(d => (d as { id: string }).id)
-    //     .distance(d => linkScale((d as any).value))
-    // )
-    .force('r', forceRadial(20))
+    .force('r', forceRadial(d => ((linkScale((d as any)?.radius ?? 5)))))
     .force('charge', forceCollide().radius(10))
     .force('center', forceCenter(width / 2, height / 2))
 
