@@ -87,9 +87,21 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "lint": "eslint src/** --env browser --ext .ts,.tsx,.js,.jsx ",
-    "lint_fix": "eslint src/** --env browser --ext .ts,.tsx,.js,.jsx --fix",
+    "lint:fix": "eslint src/** --env browser --ext .ts,.tsx,.js,.jsx --fix",
     "prettier": "prettier --check src/**/*.{ts,tsx}",
-    "prettier_fix": "prettier --check src/**/*.{ts,tsx}"
+    "prettier:fix": "prettier --check src/**/*.{ts,tsx}"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,css,less,json,md}": [
+      "prettier --write",
+      "git add"
+    ],
+    "**/*.{ts,tsx,js,jsx}": "npm run lint"
   },
   "browserslist": {
     "production": [
@@ -167,6 +179,8 @@
     "@types/react-dom": "^17.0.9",
     "eslint-config-alloy": "^4.3.0",
     "eslint-loader": "^4.0.2",
+    "husky": "^7.0.2",
+    "lint-staged": "^11.1.2",
     "prettier": "^2.3.2"
   }
 }
