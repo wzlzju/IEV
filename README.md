@@ -3,6 +3,8 @@ Industrial Economics Visualization
 
 ## Initial code description
 
+## frond end
+前端项目进行了迁移，源码地址为：[IEV_FE](https://github.com/xutong8/IEV_FE)。
 ### cepii data
 
 数据目录
