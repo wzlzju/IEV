@@ -10,6 +10,7 @@ export interface IImagesDisplayProps {
 const ImagesDisplay: React.FC<IImagesDisplayProps> = (props) => {
   const { imageList, column, size } = props;
   
+  
   const style = column
     ? {
         width: `${100 / column}%`,

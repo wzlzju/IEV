@@ -97,11 +97,11 @@
     }
   },
   "lint-staged": {
-    "*.{ts,tsx,js,jsx,css,less,json,md}": [
+    "src/**/*.{ts,tsx,js,jsx,css,less,json,md}": [
       "prettier --write",
       "git add"
     ],
-    "**/*.{ts,tsx,js,jsx}": "npm run lint"
+    "**/*.{ts,tsx,js,jsx}": "yarn run lint"
   },
   "browserslist": {
     "production": [
